@@ -10,7 +10,7 @@
   ✅--> server.js
 
   
---> Create all the static pages
+--> Desing all pages
     
 --> Add server
 
