@@ -1,0 +1,25 @@
+--> Setup the environment
+   * public
+      *index.html
+      *js
+      *css
+   * lib
+      *app.js
+     *handlers.js
+  * data
+  *server.js
+
+  
+--> Create all the static pages
+    
+--> Add server
+
+--> Add functionality to add todos
+
+--> Add functionality to view the todos
+
+--> Add functionality to delete the todos
+
+--> Add functionality to mark an item as done and undone
+
+--> Add functionality to delete todo
