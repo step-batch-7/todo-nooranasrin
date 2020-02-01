@@ -1,13 +1,13 @@
---> Setup the environment
-   * public
-      *index.html
-      *js
-      *css
-   * lib
-      *app.js
-     *handlers.js
-  * data
-  *server.js
+✅--> Setup the environment
+   ✅--> public
+      ✅ index.html
+      ✅ js
+      ✅ css
+   ✅--> lib
+      ✅ app.js
+      ✅ handlers.js
+  ✅--> data
+  ✅--> server.js
 
   
 --> Create all the static pages
