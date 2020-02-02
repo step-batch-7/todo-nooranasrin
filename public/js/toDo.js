@@ -1,11 +1,34 @@
 let lists = [];
 
+const appendToTheParent = function(titleDiv, listDiv) {
+  let mainContainer = document.getElementById('todoLists');
+  const mainDiv = document.createElement('div');
+  mainDiv.appendChild(titleDiv);
+  mainDiv.appendChild(listDiv);
+  mainDiv.className = 'todo';
+  mainContainer.appendChild(mainDiv);
+};
+
+const showResponse = function(todoLists) {
+  todoLists.forEach(todoList => {
+    const titleDiv = document.createElement('div');
+    const listDiv = document.createElement('div');
+    const heading = document.createElement('h5');
+    heading.innerText = todoList.title;
+    const lists = document.createElement('li');
+    lists.innerText = JSON.stringify(todoList.lists);
+    listDiv.appendChild(lists);
+    titleDiv.appendChild(heading);
+    appendToTheParent(titleDiv, listDiv);
+  });
+};
+
 const sendXHR = function(data, url, method) {
   const request = new XMLHttpRequest();
   request.open(method, url);
   request.send(data);
   request.onload = function() {
-    console.log(this);
+    showResponse(JSON.parse(this.responseText));
   };
 };
 

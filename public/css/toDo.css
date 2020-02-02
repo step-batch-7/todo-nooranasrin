@@ -12,7 +12,7 @@ body {
 }
 
 #list {
-  color: rgb(180, 177, 177);
+  color: #549ae0;
 }
 
 #addButton {
@@ -58,6 +58,7 @@ body {
   display: flex;
   flex-direction: column;
   display: none;
+  margin-bottom: 50px;
 }
 
 .title {
@@ -110,4 +111,10 @@ input {
 }
 
 .todo {
+  background: linear-gradient(to bottom, #549ae0 5%, #79bbff 100%);
+  margin-right: 25px;
+  margin-bottom: 25px;
+  width: 25%;
+  padding-bottom: 10px;
+  padding-left: 10px;
 }
