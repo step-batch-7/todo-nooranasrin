@@ -19,27 +19,27 @@
       <p>Add Item</p>
     </div>
 
-    <form>
-      <div id="popupDiv">
-        <div class="header">
-          <input
-            class="title"
-            type="text"
-            id="input"
-            placeholder="Title..."
-            required
-          />
-        </div>
-        <div class="header">
-          <input type="text" id="item" placeholder="Item" required />
-          <button class="addBtn" onclick="addItem()">NEXT</button>
-        </div>
-        <div class="header">
-          <button id="save" class="addBtn" onclick="hideToDoRegisterWindow()">
-            SAVE TODO
-          </button>
-        </div>
+    <div id="popupDiv">
+      <div class="header">
+        <input
+          class="title"
+          type="text"
+          id="title"
+          placeholder="Title..."
+          required
+        />
       </div>
-    </form>
+      <div class="header">
+        <input type="text" id="item" placeholder="Item" required />
+        <button class="addBtn" onclick="addItem()">NEXT</button>
+      </div>
+      <div class="header">
+        <button id="save" class="addBtn" onclick="hideToDoRegisterWindow()">
+          SAVE TODO
+        </button>
+      </div>
+    </div>
+
+    <div id="todoLists"></div>
   </body>
 </html>

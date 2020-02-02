@@ -102,3 +102,12 @@ input {
   width: 150px;
   height: 35px;
 }
+
+#todoLists {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.todo {
+}
