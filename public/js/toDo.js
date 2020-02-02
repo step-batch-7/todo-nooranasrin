@@ -32,7 +32,8 @@ const appendToTheParent = function(titleDiv, listDiv) {
 };
 
 const showResponse = function(todoLists) {
-  document.getElementById('todo').remove();
+  const todo = document.getElementById('todo');
+  todo && document.getElementById('todo').remove();
   todoLists.forEach(todoList => {
     const { titleDiv, listDiv, heading, lists } = createHTMLElements(todoList);
     listDiv.appendChild(lists);
