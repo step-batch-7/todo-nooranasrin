@@ -5,11 +5,12 @@ const appendToTheParent = function(titleDiv, listDiv) {
   const mainDiv = document.createElement('div');
   mainDiv.appendChild(titleDiv);
   mainDiv.appendChild(listDiv);
-  mainDiv.className = 'todo';
+  mainDiv.id = 'todo';
   mainContainer.appendChild(mainDiv);
 };
 
 const showResponse = function(todoLists) {
+  const element = document.getElementById('todo').remove();
   todoLists.forEach(todoList => {
     const titleDiv = document.createElement('div');
     const listDiv = document.createElement('div');

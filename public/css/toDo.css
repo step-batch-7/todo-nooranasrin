@@ -110,7 +110,7 @@ input {
   flex-wrap: wrap;
 }
 
-.todo {
+#todo {
   background: linear-gradient(to bottom, #549ae0 5%, #79bbff 100%);
   margin-right: 25px;
   margin-bottom: 25px;
