@@ -1,5 +1,27 @@
 let lists = [];
 
+const formatTodoItems = function(items) {
+  const mainDiv = document.createElement('div');
+  items.forEach(item => {
+    const div = document.createElement('div');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    div.appendChild(checkbox);
+    div.appendChild(document.createTextNode(item));
+    mainDiv.appendChild(div);
+  });
+  return mainDiv;
+};
+
+const createHTMLElements = function(todoList) {
+  const titleDiv = document.createElement('div');
+  const listDiv = document.createElement('div');
+  const heading = document.createElement('h5');
+  heading.innerText = todoList.title;
+  const lists = formatTodoItems(todoList.lists);
+  return { titleDiv, listDiv, heading, lists };
+};
+
 const appendToTheParent = function(titleDiv, listDiv) {
   let mainContainer = document.getElementById('todoLists');
   const mainDiv = document.createElement('div');
@@ -10,14 +32,9 @@ const appendToTheParent = function(titleDiv, listDiv) {
 };
 
 const showResponse = function(todoLists) {
-  const element = document.getElementById('todo').remove();
+  document.getElementById('todo').remove();
   todoLists.forEach(todoList => {
-    const titleDiv = document.createElement('div');
-    const listDiv = document.createElement('div');
-    const heading = document.createElement('h5');
-    heading.innerText = todoList.title;
-    const lists = document.createElement('li');
-    lists.innerText = JSON.stringify(todoList.lists);
+    const { titleDiv, listDiv, heading, lists } = createHTMLElements(todoList);
     listDiv.appendChild(lists);
     titleDiv.appendChild(heading);
     appendToTheParent(titleDiv, listDiv);
