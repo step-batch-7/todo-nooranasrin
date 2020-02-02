@@ -1,4 +1,6 @@
 const request = require('supertest');
+const sinon = require('sinon');
+const fs = require('fs');
 const { app } = require('../lib/handlers');
 
 describe('GET method', () => {
@@ -36,4 +38,18 @@ describe('Method Not Allowed', () => {
       .expect(405, done)
       .expect('Method Not Allowed');
   });
+});
+
+describe('POST method', () => {
+  before(() => sinon.replace(fs, 'writeFileSync', () => {}));
+
+  it('should be able to handle post request', done => {
+    request(app.processRequest.bind(app))
+      .post('/saveTodo')
+      .send('title=nooraNasrin&lists=[1]')
+      .expect('Location', '/')
+      .expect(301, done);
+  });
+
+  after(() => sinon.restore());
 });
