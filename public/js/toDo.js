@@ -24,7 +24,7 @@ const createHTMLElements = function(todoList) {
 };
 
 const appendToTheParent = function(titleDiv, listDiv, id) {
-  let mainContainer = document.getElementById('todoLists');
+  const mainContainer = document.getElementById('todoLists');
   const mainDiv = document.createElement('div');
   mainDiv.appendChild(titleDiv);
   mainDiv.appendChild(listDiv);
@@ -35,7 +35,8 @@ const appendToTheParent = function(titleDiv, listDiv, id) {
 
 const showResponse = function(todoLists) {
   const todo = document.querySelectorAll('.todo');
-  todo.length != 0 && [...todo].forEach(div => div.parentNode.removeChild(div));
+  todo.length !== 0 &&
+    [...todo].forEach(div => div.parentNode.removeChild(div));
   todoLists.forEach(todoList => {
     const { titleDiv, listDiv, heading, items } = createHTMLElements(todoList);
     listDiv.appendChild(items);
@@ -53,24 +54,19 @@ const sendXHR = function(data, url, method) {
   };
 };
 
-const generateTodoId = function() {
-  const id = Math.ceil(Math.random() * 1000);
-  if (document.getElementById(id)) generateTodoId();
-  return id;
-};
-
 const addTodoItem = function() {
   const item = document.getElementById('item').value;
-  if (item === '') return;
+  if (item === '') {
+    return;
+  }
   items.push(document.getElementById('item').value);
   document.getElementById('item').value = '';
 };
 
 const hideRegisterWindowAndSaveTodo = function() {
   addTodoItem();
-  const todoId = generateTodoId();
   const title = document.getElementById('title').value;
-  const todo = `title=${title}&items=${JSON.stringify(items)}&id=${todoId}`;
+  const todo = `title=${title}&items=${JSON.stringify(items)}`;
   sendXHR(todo, '/saveTodo', 'POST');
   document.getElementById('addButton').style.display = 'block';
   document.getElementById('popupDiv').style.display = 'none';
