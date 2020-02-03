@@ -27,13 +27,13 @@ const appendToTheParent = function(titleDiv, listDiv) {
   const mainDiv = document.createElement('div');
   mainDiv.appendChild(titleDiv);
   mainDiv.appendChild(listDiv);
-  mainDiv.id = 'todo';
+  mainDiv.className = 'todo';
   mainContainer.appendChild(mainDiv);
 };
 
 const showResponse = function(todoLists) {
-  const todo = document.getElementById('todo');
-  todo && document.getElementById('todo').remove();
+  const todo = document.querySelectorAll('.todo');
+  todo.length != 0 && [...todo].forEach(div => div.parentNode.removeChild(div));
   todoLists.forEach(todoList => {
     const { titleDiv, listDiv, heading, lists } = createHTMLElements(todoList);
     listDiv.appendChild(lists);

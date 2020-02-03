@@ -111,7 +111,7 @@ input {
   margin-top: 50px;
 }
 
-#todo {
+.todo {
   background: linear-gradient(to bottom, #2a7fd4 20%, #a1c9f1 100%);
   margin-right: 25px;
   margin-bottom: 25px;
