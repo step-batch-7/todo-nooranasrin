@@ -17,7 +17,7 @@ describe('GET method', () => {
       .get('/badFile')
       .expect('Content-Type', 'text/html')
       .expect(404, done)
-      .expect(/Oops/);
+      .expect(/page not found/);
   });
 
   it('should give the index.html page and should pass the data to the server when the url is /', done => {
