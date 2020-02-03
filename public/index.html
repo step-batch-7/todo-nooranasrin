@@ -32,10 +32,14 @@
       </div>
       <div class="header">
         <input type="text" id="item" placeholder="Item" required />
-        <button class="addBtn" onclick="addItem()">NEXT</button>
+        <button class="addBtn" onclick="addTodoItem()">NEXT</button>
       </div>
       <div class="header">
-        <button id="save" class="addBtn" onclick="hideToDoRegisterWindow()">
+        <button
+          id="save"
+          class="addBtn"
+          onclick="hideRegisterWindowAndSaveTodo()"
+        >
           SAVE TODO
         </button>
       </div>

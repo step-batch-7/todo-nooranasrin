@@ -106,19 +106,31 @@ input {
 
 #todoLists {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
   margin-top: 50px;
 }
 
 .todo {
-  background: linear-gradient(to bottom, #2a7fd4 20%, #a1c9f1 100%);
+  background: linear-gradient(to bottom, #4f9ae6 20%, #a1c9f1 100%);
   margin-right: 25px;
-  margin-bottom: 25px;
+  margin-bottom: 30px;
   width: 20%;
   height: auto;
   padding-bottom: 10px;
   padding-left: 10px;
   border-radius: 10px;
   box-shadow: 2px 5px #83a9cf;
+}
+
+.todoHeading {
+  color: rgb(243, 235, 235);
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+input[type='checkbox'] {
+  width: 25px;
+  margin: 0;
+  margin-right: 5px;
 }
