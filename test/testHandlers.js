@@ -28,6 +28,13 @@ describe('GET method', () => {
       .expect(200, done)
       .expect(/My Tasks/);
   });
+
+  it('should give the total todo lists when the url is /todoList', done => {
+    request(app.processRequest.bind(app))
+      .get('/todoList')
+      .expect('Content-Type', 'text/html')
+      .expect(200, done);
+  });
 });
 
 describe('Method Not Allowed', () => {
@@ -47,7 +54,7 @@ describe('POST method', () => {
     request(app.processRequest.bind(app))
       .post('/saveTodo')
       .send('title=nooraNasrin&lists=[1]')
-      .expect('Location', '/')
+      .expect('Location', '/todoList')
       .expect(301, done);
   });
 
