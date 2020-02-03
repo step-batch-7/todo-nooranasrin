@@ -1,8 +1,8 @@
 let items = [];
 
-const formatTodoItems = function(items) {
+const formatTodoItems = function(tasks) {
   const mainDiv = document.createElement('div');
-  items.forEach(item => {
+  tasks.forEach(item => {
     const div = document.createElement('div');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -20,8 +20,8 @@ const createHTMLElements = function(todoList) {
   const heading = document.createElement('h3');
   heading.innerText = todoList.title;
   heading.className = 'todoHeading';
-  const items = formatTodoItems(todoList.items);
-  return { titleDiv, listDiv, heading, items };
+  const tasks = formatTodoItems(todoList.tasks);
+  return { titleDiv, listDiv, heading, tasks };
 };
 
 const appendToTheParent = function(titleDiv, listDiv, id) {
@@ -34,46 +34,57 @@ const appendToTheParent = function(titleDiv, listDiv, id) {
   mainContainer.appendChild(mainDiv);
 };
 
-const showResponse = function(todoLists) {
+const showResponse = function() {
+  const todoLists = JSON.parse(this.responseText);
   const todo = document.querySelectorAll('.todo');
   todo.length !== 0 &&
     [...todo].forEach(div => div.parentNode.removeChild(div));
   todoLists.forEach(todoList => {
-    const { titleDiv, listDiv, heading, items } = createHTMLElements(todoList);
-    listDiv.appendChild(items);
+    const { titleDiv, listDiv, heading, tasks } = createHTMLElements(todoList);
+    listDiv.appendChild(tasks);
     titleDiv.appendChild(heading);
     appendToTheParent(titleDiv, listDiv, todoList.id);
   });
 };
 
-const sendXHR = function(data, url, method) {
+const sendXHR = function(data, url, method, callback) {
   const request = new XMLHttpRequest();
   request.open(method, url);
   request.send(data);
-  request.onload = function() {
-    showResponse(JSON.parse(this.responseText));
-  };
+  request.onload = callback;
+};
+
+const appendChildHTML = (selector, html) => {
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  const childNode = tempDiv.firstChild;
+  const parent = document.querySelector(selector);
+  parent.appendChild(childNode);
 };
 
 const addTodoItem = function() {
-  const item = document.getElementById('item').value;
-  if (item === '') {
+  const taskName = document.querySelector('#item').value;
+  if (taskName === '') {
     return;
   }
-  items.push(document.getElementById('item').value);
-  document.getElementById('item').value = '';
+  items.push(taskName);
+  document.querySelector('#item').value = '';
+  const html = `<div><input class="title" type="text" value="${taskName}"></div>`;
+  appendChildHTML('#addedItems', html);
 };
 
 const hideRegisterWindowAndSaveTodo = function() {
   addTodoItem();
   const title = document.getElementById('title').value;
   const todo = `title=${title}&items=${JSON.stringify(items)}`;
-  sendXHR(todo, '/saveTodo', 'POST');
+  sendXHR(todo, '/saveTodo', 'POST', showResponse);
   document.getElementById('addButton').style.display = 'block';
   document.getElementById('popupDiv').style.display = 'none';
 };
 
 const popupTodoMaker = function() {
+  const taskNames = document.querySelector('#addedItems').childNodes;
+  [...taskNames].forEach(div => div.parentNode.removeChild(div));
   items = [];
   document.getElementById('popupDiv').style.display = 'block';
   document.getElementById('addButton').style.display = 'none';
