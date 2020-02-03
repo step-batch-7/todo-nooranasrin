@@ -19,13 +19,11 @@ const formatTodoItems = function(tasks) {
 };
 
 const createHTMLElements = function(todoList) {
-  const titleDiv = document.createElement('div');
+  const html = `<h3 class='todoHeading'>${todoList.title}</h3>`;
+  const titleDiv = generateDiveWithElements(html);
   const listDiv = document.createElement('div');
-  const heading = document.createElement('h3');
-  heading.innerText = todoList.title;
-  heading.className = 'todoHeading';
   const tasks = formatTodoItems(todoList.tasks);
-  return { titleDiv, listDiv, heading, tasks };
+  return { titleDiv, listDiv, tasks };
 };
 
 const appendToTheParent = function(titleDiv, listDiv, id) {
@@ -46,9 +44,8 @@ const removeChild = function(selector) {
 };
 
 const prepareTodoListToShow = function(todoList) {
-  const { titleDiv, listDiv, heading, tasks } = createHTMLElements(todoList);
+  const { titleDiv, listDiv, tasks } = createHTMLElements(todoList);
   listDiv.appendChild(tasks);
-  titleDiv.appendChild(heading);
   appendToTheParent(titleDiv, listDiv, todoList.id);
 };
 
@@ -86,16 +83,19 @@ const prepareTextToSend = function() {
   return `title=${title}&tasks=${JSON.stringify(lists)}`;
 };
 
+const changeDisplayStyle = function(firstSelector, secondSelector) {
+  document.querySelector(firstSelector).style.display = 'block';
+  document.querySelector(secondSelector).style.display = 'none';
+};
+
 const hideRegisterWindowAndSaveTodo = function() {
   addTodoItem();
   const dataToSend = prepareTextToSend();
   sendXHR(dataToSend, '/saveTodo', 'POST', formatTodo);
-  document.getElementById('addButton').style.display = 'block';
-  document.getElementById('popupDiv').style.display = 'none';
+  changeDisplayStyle('#addButton', '#popupDiv');
 };
 
-const popupTodoMaker = function() {
+const showTodoMaker = function() {
   removeChild('#addedItems');
-  document.getElementById('popupDiv').style.display = 'block';
-  document.getElementById('addButton').style.display = 'none';
+  changeDisplayStyle('#popupDiv', '#addButton');
 };
