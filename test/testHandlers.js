@@ -53,7 +53,7 @@ describe('POST method', () => {
   it('should be able to handle post request', done => {
     request(app.processRequest.bind(app))
       .post('/saveTodo')
-      .send('title=nooraNasrin&lists=[1]')
+      .send(`title=nooraNasrin&items=[3]&id=3`)
       .expect('Location', '/todoList')
       .expect(301, done);
   });
