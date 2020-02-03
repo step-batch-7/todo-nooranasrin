@@ -45,15 +45,21 @@ const removeChild = function(selector) {
   }
 };
 
-const showResponse = function() {
+const prepareTodoListToShow = function(todoList) {
+  const { titleDiv, listDiv, heading, tasks } = createHTMLElements(todoList);
+  listDiv.appendChild(tasks);
+  titleDiv.appendChild(heading);
+  appendToTheParent(titleDiv, listDiv, todoList.id);
+};
+
+const formatTodo = function() {
+  prepareTodoListToShow(JSON.parse(this.responseText));
+};
+
+const formatTodoLists = function() {
   const todoLists = JSON.parse(this.responseText);
   removeChild('#todoLists');
-  todoLists.forEach(todoList => {
-    const { titleDiv, listDiv, heading, tasks } = createHTMLElements(todoList);
-    listDiv.appendChild(tasks);
-    titleDiv.appendChild(heading);
-    appendToTheParent(titleDiv, listDiv, todoList.id);
-  });
+  todoLists.forEach(prepareTodoListToShow);
 };
 
 const sendXHR = function(data, url, method, callback) {
@@ -77,13 +83,13 @@ const prepareTextToSend = function() {
   const title = document.getElementById('title').value;
   const tasks = document.querySelector('#addedItems').childNodes;
   const lists = [...tasks].map(task => task.value);
-  return `title=${title}&items=${JSON.stringify(lists)}`;
+  return `title=${title}&tasks=${JSON.stringify(lists)}`;
 };
 
 const hideRegisterWindowAndSaveTodo = function() {
   addTodoItem();
   const dataToSend = prepareTextToSend();
-  sendXHR(dataToSend, '/saveTodo', 'POST', showResponse);
+  sendXHR(dataToSend, '/saveTodo', 'POST', formatTodo);
   document.getElementById('addButton').style.display = 'block';
   document.getElementById('popupDiv').style.display = 'none';
 };

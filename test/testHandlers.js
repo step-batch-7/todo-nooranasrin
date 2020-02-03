@@ -53,9 +53,10 @@ describe('POST method', () => {
   it('should be able to handle post request', done => {
     request(app.processRequest.bind(app))
       .post('/saveTodo')
-      .send(`title=nooraNasrin&items=[3]&id=3`)
-      .expect('Location', '/todoList')
-      .expect(301, done);
+      .send(`title=Home&tasks=[3]`)
+      .expect('Content-Type', 'text/plain')
+      .expect(/{"title":"Home"/)
+      .expect(200, done);
   });
 
   after(() => sinon.restore());
