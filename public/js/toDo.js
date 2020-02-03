@@ -6,8 +6,9 @@ const formatTodoItems = function(items) {
     const div = document.createElement('div');
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
+    checkbox.id = item.id;
     div.appendChild(checkbox);
-    div.appendChild(document.createTextNode(item));
+    div.appendChild(document.createTextNode(item.task));
     mainDiv.appendChild(div);
   });
   return mainDiv;
