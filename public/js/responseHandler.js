@@ -67,7 +67,7 @@ const appendToTheParent = function(titleDiv, listDiv, id, deleteDiv) {
 };
 
 const removeChild = function(selector) {
-  const children = document.querySelectorAll(selector)[0].childNodes;
+  const children = document.querySelector(selector).childNodes;
   if (children) {
     [...children].forEach(child => child.parentNode.removeChild(child));
   }
