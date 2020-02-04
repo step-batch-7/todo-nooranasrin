@@ -134,6 +134,7 @@ input {
 
 input[type='checkbox'] {
   width: 25px;
+  height: 22px;
   margin: 0;
   margin-right: 5px;
 }
@@ -146,4 +147,20 @@ input[type='checkbox'] {
 
 .strikeTask {
   text-decoration: line-through;
+}
+
+.deleteTask {
+  margin-left: 120px;
+  text-align: center;
+  border-radius: 10px;
+  background: none;
+  border: none;
+}
+
+.deleteTask:active {
+  border: 1px solid #88bef5;
+}
+
+.task {
+  margin-top: 25px;
 }

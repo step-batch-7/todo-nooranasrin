@@ -12,10 +12,12 @@ const appendChildHTML = (selector, html) => {
 
 const generateHTMLForTasks = function(className, status, task, id) {
   let html = '';
-  html += '<div>';
-  html += `<input type='checkbox' onclick='changeTaskStatus()' ${status} id=${id}>`;
-  html += `<span ${className}>${task}</span>`;
-  html += '<div>';
+  html += `<div class="task" id=${id}>`;
+  html += `<input type='checkbox' onclick='changeTaskStatus()' ${status} >`;
+  html += `<span ${className}>${task}</span> `;
+  html += '<button class="deleteTask" onclick="deleteItem()">';
+  html += '<img src="../images/delete.png" height="15px" width="15px">';
+  html += '</button><div>';
   return html;
 };
 
@@ -51,6 +53,12 @@ const appendToTheParent = function(titleDiv, listDiv, id) {
   mainContainer.append(mainDiv);
 };
 
+const getIds = function(event) {
+  const todoId = [...event.path].find(parent => parent.className === 'todo').id;
+  const taskId = [...event.path].find(parent => parent.className === 'task').id;
+  return { todoId, taskId };
+};
+
 const removeChild = function(selector) {
   const children = document.querySelectorAll(selector)[0].childNodes;
   if (children) {
@@ -77,9 +85,14 @@ const sendXHR = function(data, url, method) {
   request.onload = formatTodoLists;
 };
 
+const deleteItem = function() {
+  const { todoId, taskId } = getIds(event);
+  const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
+  sendXHR(textTodSend, '/deleteTask', 'POST');
+};
+
 const changeTaskStatus = function() {
-  const todoId = [...event.path].find(parent => parent.className === 'todo').id;
-  const taskId = event.target.id;
+  const { todoId, taskId } = getIds(event);
   const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
   sendXHR(textTodSend, '/changeTaskStatus', 'POST');
 };
