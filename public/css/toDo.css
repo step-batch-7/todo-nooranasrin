@@ -142,3 +142,7 @@ input[type='checkbox'] {
   flex-flow: column;
   align-items: center;
 }
+
+.strikeTask {
+  text-decoration: line-through;
+}

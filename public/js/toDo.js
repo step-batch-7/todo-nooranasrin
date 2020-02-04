@@ -13,8 +13,15 @@ const appendChildHTML = (selector, html) => {
 const formatTodoItems = function(tasks) {
   let html = '';
   tasks.forEach(item => {
+    let className = '';
+    let status = '';
+    if (item.status) {
+      className = 'class="strikeTask" checked';
+      status = ' checked';
+    }
     html += '<div>';
-    html += `<input type='checkbox' onclick='changeTaskStatus()' id=${item.id}>${item.task}`;
+    html += `<input type='checkbox' onclick='changeTaskStatus()' ${status} id=${item.id}>`;
+    html += `<span ${className}>${item.task}</span>`;
     html += '<div>';
   });
   return generateDiveWithElements(html);
@@ -35,7 +42,7 @@ const appendToTheParent = function(titleDiv, listDiv, id) {
   mainDiv.appendChild(listDiv);
   mainDiv.className = 'todo';
   mainDiv.id = id;
-  mainContainer.appendChild(mainDiv);
+  mainContainer.prepend(mainDiv);
 };
 
 const removeChild = function(selector) {
@@ -51,21 +58,24 @@ const prepareTodoListToShow = function(todoList) {
   appendToTheParent(titleDiv, listDiv, todoList.id);
 };
 
-const formatTodo = function() {
-  prepareTodoListToShow(JSON.parse(this.responseText));
-};
-
 const formatTodoLists = function() {
   const todoLists = JSON.parse(this.responseText);
   removeChild('#todoLists');
   todoLists.forEach(prepareTodoListToShow);
 };
 
-const sendXHR = function(data, url, method, callback) {
+const sendXHR = function(data, url, method) {
   const request = new XMLHttpRequest();
   request.open(method, url);
   request.send(data);
-  request.onload = callback;
+  request.onload = formatTodoLists;
+};
+
+const changeTaskStatus = function() {
+  const todoId = [...event.path].find(parent => parent.className === 'todo').id;
+  const taskId = event.target.id;
+  const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
+  sendXHR(textTodSend, '/changeTaskStatus', 'POST');
 };
 
 const addTodoItem = function() {
@@ -93,7 +103,7 @@ const changeDisplayStyle = function(firstSelector, secondSelector) {
 const hideRegisterWindowAndSaveTodo = function() {
   addTodoItem();
   const dataToSend = prepareTextToSend();
-  sendXHR(dataToSend, '/saveTodo', 'POST', formatTodo);
+  sendXHR(dataToSend, '/saveTodo', 'POST');
   changeDisplayStyle('#addButton', '#popupDiv');
 };
 

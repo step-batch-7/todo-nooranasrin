@@ -48,9 +48,10 @@ describe('Method Not Allowed', () => {
 });
 
 describe('POST method', () => {
-  before(() => sinon.replace(fs, 'writeFileSync', () => {}));
+  beforeEach(() => sinon.replace(fs, 'writeFileSync', () => {}));
+  afterEach(() => sinon.restore());
 
-  it('should be able to handle post request', done => {
+  it('should be able to save the new todo', done => {
     request(app.processRequest.bind(app))
       .post('/saveTodo')
       .send(`title=Home&tasks=[3]`)
@@ -58,6 +59,4 @@ describe('POST method', () => {
       .expect(/{"title":"Home"/)
       .expect(200, done);
   });
-
-  after(() => sinon.restore());
 });
