@@ -10,6 +10,15 @@ const appendChildHTML = (selector, html) => {
   parent.appendChild(childNode);
 };
 
+const generateHTMLForTasks = function(className, status, task, id) {
+  let html = '';
+  html += '<div>';
+  html += `<input type='checkbox' onclick='changeTaskStatus()' ${status} id=${id}>`;
+  html += `<span ${className}>${task}</span>`;
+  html += '<div>';
+  return html;
+};
+
 const formatTodoItems = function(tasks) {
   let html = '';
   tasks.forEach(item => {
@@ -19,10 +28,7 @@ const formatTodoItems = function(tasks) {
       className = 'class="strikeTask" checked';
       status = ' checked';
     }
-    html += '<div>';
-    html += `<input type='checkbox' onclick='changeTaskStatus()' ${status} id=${item.id}>`;
-    html += `<span ${className}>${item.task}</span>`;
-    html += '<div>';
+    html += generateHTMLForTasks(className, status, item.task, item.id);
   });
   return generateDiveWithElements(html);
 };
@@ -42,7 +48,7 @@ const appendToTheParent = function(titleDiv, listDiv, id) {
   mainDiv.appendChild(listDiv);
   mainDiv.className = 'todo';
   mainDiv.id = id;
-  mainContainer.prepend(mainDiv);
+  mainContainer.append(mainDiv);
 };
 
 const removeChild = function(selector) {
