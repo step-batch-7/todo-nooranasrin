@@ -13,7 +13,9 @@ const appendChildHTML = (selector, html) => {
 const formatTodoItems = function(tasks) {
   let html = '';
   tasks.forEach(item => {
-    html += `<div><input type='checkbox' id=${item.id}>${item.task}<div>`;
+    html += '<div>';
+    html += `<input type='checkbox' onclick='changeTaskStatus()' id=${item.id}>${item.task}`;
+    html += '<div>';
   });
   return generateDiveWithElements(html);
 };

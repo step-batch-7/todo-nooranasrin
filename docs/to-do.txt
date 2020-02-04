@@ -10,13 +10,13 @@
   ✅--> server.js
 
   
---> Desing all pages
+✅--> Desing all pages
     
---> Add server
+✅--> Add server
 
---> Add functionality to add todos
+✅--> Add functionality to add todos
 
---> Add functionality to view the todos
+✅--> Add functionality to view the todos
 
 --> Add functionality to delete the todos
 
