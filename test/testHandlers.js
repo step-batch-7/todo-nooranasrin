@@ -32,7 +32,7 @@ describe('GET method', () => {
   it('should give the total todo lists when the url is /todoList', done => {
     request(app.processRequest.bind(app))
       .get('/todoList')
-      .expect('Content-Type', 'text/html')
+      .expect('Content-Type', 'application/json')
       .expect(200, done);
   });
 });
@@ -55,7 +55,7 @@ describe('POST method', () => {
     request(app.processRequest.bind(app))
       .post('/saveTodo')
       .send(`title=Home&tasks=[3]`)
-      .expect('Content-Type', 'text/plain')
+      .expect('Content-Type', 'application/json')
       .expect(/{"title":"Home"/)
       .expect(200, done);
   });

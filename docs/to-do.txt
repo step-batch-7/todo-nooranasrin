@@ -18,8 +18,8 @@
 
 ✅--> Add functionality to view the todos
 
---> Add functionality to delete the todos
+✅--> Add functionality to delete the todos
 
---> Add functionality to mark an item as done and undone
+✅--> Add functionality to mark an item as done and undone
 
---> Add functionality to delete todo
+✅--> Add functionality to delete todo
