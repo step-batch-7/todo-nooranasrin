@@ -66,6 +66,12 @@ const changeStatus = function() {
   sendXHR(textTodSend, '/changeTaskStatus', 'POST', formatTodoLists);
 };
 
+const deleteTodo = function() {
+  const { todoId } = getIds(event);
+  const data = `todoId=${todoId}`;
+  sendXHR(data, '/deleteTodo', 'POST');
+};
+
 const updateTask = function() {
   if (event.key === 'Enter') {
     const { todoId, taskId } = getIds(event);

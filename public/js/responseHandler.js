@@ -19,7 +19,8 @@ const formatTodoItems = function(tasks, patternDiv) {
 const createHTMLElements = function(todoList) {
   const paperDiv = generateDiveWithElements('<div class="paper"></div>');
   const patternDiv = generateDiveWithElements('<div class="pattern"></div>');
-  let titleDiv = `<div class='content' ondblclick="this.contentEditable=true;" onkeypress="updateTitle()">${todoList.title}</div >`;
+  let titleDiv = `<div class='content' ondblclick="this.contentEditable=true;" onkeypress="updateTitle()">${todoList.title}
+  <img src="./images/deleteTodo.png"  class='deleteTodo' onClick='deleteTodo()'/></div >`;
   titleDiv = generateDiveWithElements(titleDiv);
   patternDiv.appendChild(titleDiv);
   paperDiv.id = todoList.id;

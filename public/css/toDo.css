@@ -111,53 +111,15 @@ body {
 
 /* ---------------------------------------------EDIT TODO-------------------------------- */
 
-#editTodoDiv {
-  display: none;
+.deleteTodo {
+  height: 18px;
+  width: 18px;
+  margin-left: 160px;
 }
 
-#editAndDeleteTodo {
-  display: flex;
-  flex-flow: row;
-  height: auto;
-  width: 95%;
-  padding-top: 25%;
-  padding-left: 5%;
-}
-
-#editTodoTitle {
-  width: 85%;
-  height: 30px;
-  outline: none;
-  text-align: center;
-  font-size: 15px;
-  background-color: rgba(207, 196, 196, 0.2);
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 2px solid rgba(207, 196, 196, 0.4);
-}
-
-.editTask {
-  width: 85%;
-  height: 27px;
-  outline: none;
-  text-align: center;
-  font-size: 12px;
-  border-radius: 5px;
-  border: 2px solid rgba(207, 196, 196, 0.4);
-}
-
-.editTaskDiv {
-  padding-left: 5%;
-  display: flex;
-}
-
-#deleteTodo {
-  margin-top: 3px;
-}
-
-#deleteTodo:active {
-  width: 29px;
-  height: 31px;
+.deleteTodo:active {
+  width: 20px;
+  height: 20px;
 }
 
 .deleteTask {
@@ -168,10 +130,6 @@ body {
 .deleteTask:active {
   width: 16px;
   height: 21px;
-}
-
-#saveAfterEdit {
-  margin-left: 44%;
 }
 
 /* --------------------------------------------TODO LISTS-------------------------------- */
