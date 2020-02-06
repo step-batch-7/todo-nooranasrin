@@ -55,7 +55,6 @@ describe('POST method', () => {
     request(app.processRequest.bind(app))
       .post('/saveTodo')
       .send(`title=Home&tasks=[3]`)
-      .expect('Content-Type', 'application/json')
       .expect(/{"title":"Home"/)
       .expect(200, done);
   });

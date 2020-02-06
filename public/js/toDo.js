@@ -1,3 +1,5 @@
+const getParentId = id => [...event.path].find(parent => parent.id === id);
+
 const getIds = function(event) {
   const todoId = [...event.path].find(parent => parent.className === 'paper')
     .id;
@@ -17,17 +19,26 @@ const changeDisplayStyle = function(firstSelector, secondSelector) {
   document.querySelector(secondSelector).style.display = 'none';
 };
 
-const formatTodoToSave = function() {
-  const title = document.getElementById('todoTitle').value;
-  const tasks = document.querySelectorAll('.todoTask');
+const formatTodoToSave = function(titleId, className) {
+  const title = document.getElementById(titleId).value;
+  const tasks = document.querySelectorAll(className);
   const lists = [...tasks].map(task => task.value);
-  return `title=${title}&tasks=${JSON.stringify(lists)}`;
+  return { title, lists };
 };
 
 const saveTodo = function() {
-  const newTodo = formatTodoToSave();
+  const { title, lists } = formatTodoToSave('todoTitle', '.todoTask');
+  const newTodo = `title=${title}&tasks=${JSON.stringify(lists)}`;
   sendXHR(newTodo, '/saveTodo', 'POST', formatTodoLists);
   changeDisplayStyle('#newTodoAddButtonDiv', '#newTodoAdder');
+};
+
+const saveEditedTodo = function() {
+  changeDisplayStyle('#newTodoAddButtonDiv', '#editTodoDiv');
+  const { todoId } = getParentId('editTodoDiv').dataset;
+  const { title, lists } = formatTodoToSave('editTodoTitle', '.editTask');
+  const data = `title=${title}&tasks=${JSON.stringify(lists)}&todoId=${todoId}`;
+  sendXHR(data, '/updateTodo', 'POST', formatTodoLists);
 };
 
 const addNewTask = function() {
@@ -62,8 +73,7 @@ const changeStatus = function() {
 
 const deleteTodo = function() {
   changeDisplayStyle('#newTodoAddButtonDiv', '#editTodoDiv');
-  const editDiv = [...event.path].find(parent => parent.id === 'editTodoDiv');
-  const todoId = editDiv.dataset;
+  const { todoId } = getParentId('editTodoDiv').dataset;
   const textToSend = `todoId=${todoId}`;
   sendXHR(textToSend, '/deleteTodo', 'POST', formatTodoLists);
 };
@@ -108,17 +118,6 @@ const editTodo = function() {
   const title = document.querySelector('#editTodoTitle');
   editDiv.dataset.todoId = todoId;
   createEditBox(todoId, editDiv, title);
-};
-
-const saveEditedTodo = function() {
-  changeDisplayStyle('#newTodoAddButtonDiv', '#editTodoDiv');
-  const editDiv = [...event.path].find(parent => parent.id === 'editTodoDiv');
-  const { todoId } = editDiv.dataset;
-  const title = document.getElementById('editTodoTitle').value;
-  const tasks = document.querySelectorAll('.editTask');
-  const lists = [...tasks].map(task => task.value);
-  const data = `title=${title}&tasks=${JSON.stringify(lists)}&todoId=${todoId}`;
-  sendXHR(data, '/updateTodo', 'POST', formatTodoLists);
 };
 
 const attachEventListener = function() {

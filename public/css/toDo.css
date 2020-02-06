@@ -1,14 +1,6 @@
-html {
-  margin: 0px;
-  height: 100%;
-  width: 100%;
-}
-
 body {
   background-color: rgba(0, 0, 0, 0.1);
   margin: 0px;
-  min-height: 100%;
-  width: 100%;
 }
 
 #wholePage {
@@ -38,17 +30,15 @@ body {
   border: none;
   border-radius: 5px;
   position: relative;
-  border-bottom: 4px solid #2b8bc6;
   color: #fbfbfb;
   font-weight: 600;
-  font-family: 'Open Sans', sans-serif;
+  font-family: sans-serif;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
   font-size: 15px;
   text-align: left;
   box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2);
   display: block;
   margin: 0 auto;
-  margin-bottom: 20px;
   padding-top: 10px;
   padding-left: 7px;
 }
@@ -218,7 +208,6 @@ body {
 }
 
 .pattern {
-  height: 100%;
   background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
 }
 
@@ -233,6 +222,10 @@ body {
   height: 20px;
 }
 
+.star {
+  margin-right: 7px;
+}
+
 .star:active {
   width: 15px;
   height: 15px;
@@ -242,7 +235,7 @@ body {
   margin-left: 150px;
 }
 
-.editImage:activee {
+.editImage:active {
   height: 18px;
   width: 18px;
 }
