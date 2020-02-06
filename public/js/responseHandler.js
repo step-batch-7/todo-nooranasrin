@@ -9,8 +9,8 @@ const formatTodoItems = function(tasks, patternDiv) {
     let src = './images/star.png';
     if (item.status) src = './images/done.png';
     let html = `<div class="content" id="${item.id}" ondblclick="this.contentEditable=true;" onkeypress="updateTask()">
-          <img src="${src}" height="13px" width='13px' class='star' onclick='changeStatus()'/>${item.task}
-      </div>`;
+          <img src="${src}"  class='star' onclick='changeStatus()'/>${item.task}
+      <img src="./images/deleteTask.png"  class='deleteTask' onclick='deleteTask()'/></div>`;
     patternDiv.appendChild(generateDiveWithElements(html));
   });
   return patternDiv;

@@ -1,8 +1,5 @@
 const getParentId = id => [...event.path].find(parent => parent.id === id);
 
-const deleteTask = () =>
-  [...event.path].find(parent => parent.className === 'editTaskDiv').remove();
-
 const getIds = function(event) {
   const todoId = [...event.path].find(parent => parent.className === 'paper')
     .id;
@@ -64,6 +61,12 @@ const changeStatus = function() {
   const { todoId, taskId } = getIds(event);
   const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
   sendXHR(textTodSend, '/changeTaskStatus', 'POST', formatTodoLists);
+};
+
+const deleteTask = function() {
+  const { todoId, taskId } = getIds(event);
+  const data = `todoId=${todoId}&taskId=${taskId}`;
+  sendXHR(data, '/deleteTask', 'POST');
 };
 
 const deleteTodo = function() {

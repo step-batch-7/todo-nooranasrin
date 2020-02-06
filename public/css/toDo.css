@@ -123,13 +123,15 @@ body {
 }
 
 .deleteTask {
+  height: 10px;
+  width: 10px;
   margin-top: 5px;
-  margin-left: 5px;
+  margin-left: 128px;
 }
 
 .deleteTask:active {
-  width: 16px;
-  height: 21px;
+  width: 11px;
+  height: 12px;
 }
 
 /* --------------------------------------------TODO LISTS-------------------------------- */
@@ -183,6 +185,8 @@ body {
 
 .star {
   margin-right: 7px;
+  height: 13px;
+  width: 13px;
 }
 
 .star:active {
