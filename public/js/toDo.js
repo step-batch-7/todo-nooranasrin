@@ -1,5 +1,8 @@
 const getParentId = id => [...event.path].find(parent => parent.id === id);
 
+const deleteTask = () =>
+  [...event.path].find(parent => parent.className === 'editTaskDiv').remove();
+
 const getIds = function(event) {
   const todoId = [...event.path].find(parent => parent.className === 'paper')
     .id;
@@ -33,14 +36,6 @@ const saveTodo = function() {
   changeDisplayStyle('#newTodoAddButtonDiv', '#newTodoAdder');
 };
 
-const saveEditedTodo = function() {
-  changeDisplayStyle('#newTodoAddButtonDiv', '#editTodoDiv');
-  const { todoId } = getParentId('editTodoDiv').dataset;
-  const { title, lists } = formatTodoToSave('editTodoTitle', '.editTask');
-  const data = `title=${title}&tasks=${JSON.stringify(lists)}&todoId=${todoId}`;
-  sendXHR(data, '/updateTodo', 'POST', formatTodoLists);
-};
-
 const addNewTask = function() {
   const task = event.target.value;
   if (event.key === 'Enter' && task !== '') {
@@ -71,53 +66,13 @@ const changeStatus = function() {
   sendXHR(textTodSend, '/changeTaskStatus', 'POST', formatTodoLists);
 };
 
-const deleteTodo = function() {
-  changeDisplayStyle('#newTodoAddButtonDiv', '#editTodoDiv');
-  const { todoId } = getParentId('editTodoDiv').dataset;
-  const textToSend = `todoId=${todoId}`;
-  sendXHR(textToSend, '/deleteTodo', 'POST', formatTodoLists);
-};
-
-const deleteTask = function() {
-  [...event.path].find(parent => parent.className === 'editTaskDiv').remove();
-};
-
-const createEditTaskTemplate = function(task, editDiv) {
-  let html = '<div class="editTaskDiv">';
-  html += `<input type='text' class='editTask' value='${task.innerText}' />`;
-  html += '<img src="./images/deleteTask.png" width="15px" height="20px"';
-  html += ' class="deleteTask" onclick="deleteTask()"/></div>';
-  editDiv.appendChild(generateDiveWithElements(html));
-};
-
-const createSaveButton = function(editDiv) {
-  let save = '<img src="./images/save.png" width="30px" height="35px"';
-  save += 'id="saveAfterEdit" onclick="saveEditedTodo()"/>';
-  return generateDiveWithElements(save);
-};
-
-const createEditBox = function(todoId, editDiv, titleInputBox) {
-  let tasks = [...document.getElementById(todoId).firstChild.childNodes];
-  const [title] = tasks.splice(0, 1);
-  titleInputBox.value = title.innerText;
-  tasks.forEach(task => createEditTaskTemplate(task, editDiv));
-  editDiv.appendChild(createSaveButton());
-};
-
-const deleteEditTaskBox = function(selector) {
-  let taskBoxes = [...document.querySelectorAll(selector)];
-  taskBoxes.forEach(taskBox => taskBox.parentNode.removeChild(taskBox));
-  document.querySelector('#saveAfterEdit').remove();
-};
-
-const editTodo = function() {
-  deleteEditTaskBox('.editTaskDiv', 'editTodoTitle');
-  changeDisplayStyle('#editTodoDiv', '#newTodoAddButtonDiv');
-  const { todoId } = getIds(event);
-  const editDiv = document.querySelector('#editTodoDiv');
-  const title = document.querySelector('#editTodoTitle');
-  editDiv.dataset.todoId = todoId;
-  createEditBox(todoId, editDiv, title);
+const updateTitle = function() {
+  if (event.key === 'Enter') {
+    const { todoId } = getIds(event);
+    const newTitle = event.target.innerText;
+    const data = `todoId=${todoId}&title=${newTitle}`;
+    sendXHR(data, '/updateTitle', 'POST');
+  }
 };
 
 const attachEventListener = function() {
@@ -126,6 +81,6 @@ const attachEventListener = function() {
 };
 
 const main = function() {
+  sendXHR('', '/todoList', 'GET');
   attachEventListener();
-  sendXHR('', '/todoList', 'GET', formatTodoLists);
 };

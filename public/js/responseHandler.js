@@ -8,8 +8,9 @@ const formatTodoItems = function(tasks, patternDiv) {
   tasks.forEach(item => {
     let src = './images/star.png';
     if (item.status) src = './images/done.png';
-    let html = `<div class="content" id="${item.id}"> <img src="${src}" height="13px"`;
-    html += ` width='13px' class='star' onclick='changeStatus()'/>${item.task}</div>`;
+    let html = `<div class="content" id="${item.id}" ondblclick="this.contentEditable=true;">
+          <img src="${src}" height="13px" width='13px' class='star' onclick='changeStatus()'/>${item.task}
+      </div>`;
     patternDiv.appendChild(generateDiveWithElements(html));
   });
   return patternDiv;
@@ -18,9 +19,7 @@ const formatTodoItems = function(tasks, patternDiv) {
 const createHTMLElements = function(todoList) {
   const paperDiv = generateDiveWithElements('<div class="paper"></div>');
   const patternDiv = generateDiveWithElements('<div class="pattern"></div>');
-  let titleDiv = `<div class='content'>${todoList.title}`;
-  titleDiv += '<img class="editImage" src="./images/edit.png" width="17px" ';
-  titleDiv += 'height="17px" onclick = "editTodo()" /></div > ';
+  let titleDiv = `<div class='content' ondblclick="this.contentEditable=true;" onkeypress="updateTitle()">${todoList.title}</div >`;
   titleDiv = generateDiveWithElements(titleDiv);
   patternDiv.appendChild(titleDiv);
   paperDiv.id = todoList.id;
@@ -48,9 +47,9 @@ const formatTodoLists = function() {
   todoLists.forEach(prepareTodoListToShow);
 };
 
-const sendXHR = function(data, url, method, callback) {
+const sendXHR = function(data, url, method) {
   const request = new XMLHttpRequest();
   request.open(method, url);
   request.send(data);
-  request.onload = callback;
+  request.onload = formatTodoLists;
 };
