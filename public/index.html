@@ -5,50 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>My Tasks</title>
-    <link rel="icon" href="./images/icon.jpg" />
     <link rel="shortcut icon" href="#" />
     <link rel="stylesheet" href="./css/toDo.css" />
     <script src="./js/responseHandler.js"></script>
     <script src="./js/toDo.js"></script>
   </head>
-  <body onload="sendXHR('','/todoList','GET')">
-    <div id="todoHeading">
-      <p><span id="task">Tasks</span> <span id="list"> Lists</span></p>
-    </div>
+  <body onload="main()">
+    <div id="wholePage">
+      <div id="sideBarDiv">
+        <div id="newTodoAddButtonDiv">
+          <span class="newTodoAddButton" onclick="showTodoAdderWindow()"
+            >Add Your Todo Here</span
+          >
+        </div>
 
-    <div id="addButton">
-      <button id="plusButton" onclick="showTodoMaker()">+</button>
-      <p>Add Item</p>
-    </div>
+        <div id="newTodoAdder">
+          <div id="titleAndSave">
+            <input type="text" id="todoTitle" placeholder="Add title here..." />
+            <img
+              src="./images/save.png"
+              width="30px"
+              height="35px"
+              id="saveImg"
+              onclick="saveTodo()"
+            />
+          </div>
+          <input type="text" class="todoTask" placeholder="Add task here..." />
+        </div>
 
-    <div id="popupDiv">
-      <div class="header">
-        <input
-          class="title"
-          type="text"
-          id="title"
-          placeholder="Title..."
-          required
-        />
+        <div id="editTodoDiv">
+          <div id="editAndDeleteTodo">
+            <input
+              type="text"
+              id="editTodoTitle"
+              placeholder="Add title here...&#9997;&#127995;"
+            />
+            <img
+              src="./images/deleteTodo.png"
+              width="30px"
+              height="32px"
+              id="deleteTodo"
+              onclick="deleteTodo()"
+            />
+          </div>
+          <img id="saveAfterEdit" />
+        </div>
       </div>
-      <div class="header">
-        <input type="text" id="item" placeholder="Item" required />
-        <button class="addBtn" onclick="addTodoItem()">NEXT</button>
-      </div>
-
-      <div id="addedItems" class="header"></div>
-
-      <div class="header">
-        <button
-          id="save"
-          class="addBtn"
-          onclick="hideRegisterWindowAndSaveTodo()"
-        >
-          SAVE TODO
-        </button>
-      </div>
+      <div id="todoDisplay"></div>
     </div>
-
-    <div id="todoLists"></div>
   </body>
 </html>

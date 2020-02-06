@@ -1,180 +1,248 @@
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
 body {
-  font-family: sans-serif;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 0px;
+  min-height: 100%;
+  width: 100%;
 }
 
-#todoHeading {
-  text-align: center;
-  font-size: 50px;
+#wholePage {
+  display: flex;
 }
 
-#task {
-  font-weight: bolder;
+/* ---------------------------------NEW TODO MAKER--------------------------------------- */
+
+#sideBarDiv {
+  height: 100vh;
+  width: 21%;
+  box-shadow: 0px 0px 5px 0px #888;
+  background-color: rgb(247, 241, 241);
 }
 
-#list {
-  color: #549ae0;
+/* ---------------------------------new todo add button------------------------------------ */
+
+#newTodoAddButtonDiv {
+  margin-top: 120%;
+  height: auto;
 }
 
-#addButton {
-  margin-left: 49%;
-  margin-bottom: 131.5px;
-}
-
-#plusButton {
-  box-shadow: inset 0px 1px 0px 0px #bbdaf7;
-  background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
-  border-radius: 10%;
-  border: 1px solid #84bbf3;
-  color: #ffffff;
-  font-weight: bold;
-  padding: 6px 24px;
-  text-shadow: 0px 1px 0px #528ecc;
-  font-size: 25px;
-}
-
-#plusButton:hover {
-  background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
-  background-color: #378de5;
-}
-
-#plusButton:active {
+.newTodoAddButton {
+  width: 175px;
+  height: 30px;
+  background: linear-gradient(to bottom, #4eb5e5 0%, #389ed5 100%);
+  border: none;
+  border-radius: 5px;
   position: relative;
+  border-bottom: 4px solid #2b8bc6;
+  color: #fbfbfb;
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);
+  font-size: 15px;
+  text-align: left;
+  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2);
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-left: 7px;
+}
+
+.newTodoAddButton:active {
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
   top: 1px;
 }
 
-#hideDiv {
-  position: fixed;
-  margin-left: 45%;
-}
-.hidden {
-  display: none;
-}
-.header {
-  display: flex;
-  padding: 30px 40px;
-  text-align: center;
-  justify-content: center;
-  margin-bottom: -50px;
+.newTodoAddButton:after {
+  content: '';
+  border-top: 20px solid #187dbc;
+  border-bottom: 20px solid #187dbc;
+  border-left: 16px solid transparent;
+  border-right: 20px solid #187dbc;
+  position: absolute;
+  opacity: 0.6;
+  right: 0;
+  top: 0;
+  border-radius: 0 5px 5px 0;
 }
 
-#popupDiv {
-  display: flex;
-  flex-direction: column;
-  display: none;
-  margin-bottom: 50px;
-}
+/* -----------------------------------------new todo adder------------------------------- */
 
-.title {
-  background-color: rgb(141, 189, 235);
-  margin-left: 5px;
-  width: 337px;
-  margin-top: 6px;
-}
-
-button {
-  outline: none;
-}
-
-input {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  width: 20%;
-  padding: 10px;
-  float: left;
-  font-size: 16px;
-  outline: none;
-  background-color: rgb(243, 235, 235);
-  margin-right: 5px;
-}
-
-.addBtn {
-  padding: 10px;
-  width: 5%;
-  background: #79bbff;
-  text-align: center;
-  font-size: 16px;
-  transition: 0.3s;
-  border-radius: 7px;
-}
-
-.addBtn:hover {
-  background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
-  background-color: #378de5;
-}
-
-#save {
-  width: 150px;
-  height: 35px;
-}
-
-#todoLists {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 50px;
-}
-
-.todo {
-  background: linear-gradient(to bottom, #4f9ae6 20%, #a1c9f1 100%);
-  margin-right: 25px;
-  margin-bottom: 30px;
-  width: 25%;
-  height: auto;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  border-radius: 10px;
-}
-
-.todoHeading {
-  color: rgb(243, 235, 235);
-  text-align: center;
-  letter-spacing: 2px;
-}
-
-input[type='checkbox'] {
-  width: 25px;
-  height: 22px;
-  margin: 0;
-  margin-right: 5px;
-}
-
-#addedItems {
+#newTodoAdder {
   display: flex;
   flex-flow: column;
-  align-items: center;
+  height: auto;
+  width: 95%;
+  padding-top: 25%;
+  padding-left: 5%;
+  display: none;
 }
 
-.strikeTask {
-  text-decoration: line-through;
+#todoTitle {
+  width: 85%;
+  height: 30px;
+  outline: none;
+  text-align: center;
+  font-size: 15px;
+  background-color: rgba(207, 196, 196, 0.2);
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid rgba(207, 196, 196, 0.4);
+}
+
+#titleAndSave {
+  display: flex;
+  flex-flow: row;
+}
+
+#saveImg {
+  width: 9%;
+}
+
+#saveImg:active {
+  width: 31px;
+  height: 36px;
+}
+
+.todoTask {
+  width: 85%;
+  height: 27px;
+  outline: none;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 2px solid rgba(207, 196, 196, 0.4);
+}
+
+/* ---------------------------------------------EDIT TODO-------------------------------- */
+
+#editTodoDiv {
+  display: none;
+}
+
+#editAndDeleteTodo {
+  display: flex;
+  flex-flow: row;
+  height: auto;
+  width: 95%;
+  padding-top: 25%;
+  padding-left: 5%;
+}
+
+#editTodoTitle {
+  width: 85%;
+  height: 30px;
+  outline: none;
+  text-align: center;
+  font-size: 15px;
+  background-color: rgba(207, 196, 196, 0.2);
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 2px solid rgba(207, 196, 196, 0.4);
+}
+
+.editTask {
+  width: 85%;
+  height: 27px;
+  outline: none;
+  text-align: center;
+  font-size: 12px;
+  border-radius: 5px;
+  border: 2px solid rgba(207, 196, 196, 0.4);
+}
+
+.editTaskDiv {
+  padding-left: 5%;
+  display: flex;
+}
+
+#deleteTodo {
+  margin-top: 3px;
+}
+
+#deleteTodo:active {
+  width: 29px;
+  height: 31px;
 }
 
 .deleteTask {
-  text-align: center;
-  border-radius: 10px;
-  background: none;
-  border: none;
+  margin-top: 5px;
+  margin-left: 5px;
 }
 
 .deleteTask:active {
-  border: 1px solid #88bef5;
+  width: 16px;
+  height: 21px;
 }
 
-.task {
-  margin-top: 25px;
+#saveAfterEdit {
+  margin-left: 44%;
 }
 
-.todoDeleteButton {
-  margin-left: 45%;
+/* --------------------------------------------TODO LISTS-------------------------------- */
+
+#todoDisplay {
+  height: 100%;
+  width: 79%;
+  padding-left: 30px;
   margin-top: 20px;
-  background: none;
-  border: none;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.todoDeleteButton:active {
-  border: 0.5px solid #9dc8f3;
+.paper {
+  width: 350px;
+  height: auto;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #888;
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
-.tasks {
-  height: 80px;
+.paper::before {
+  content: '';
+  width: 2px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 40px;
+  background-color: rgba(255, 0, 0, 0.6);
+}
+
+.pattern {
+  height: 100%;
+  background-image: repeating-linear-gradient(white 0px, white 24px, teal 25px);
+}
+
+.content {
+  padding-top: 6px;
+  padding-left: 56px;
+  padding-right: 16px;
+  line-height: 20px;
+  font-size: 19px;
+  letter-spacing: 1px;
+  word-spacing: 5px;
+  height: 20px;
+}
+
+.star:active {
+  width: 15px;
+  height: 15px;
+}
+
+.editImage {
+  margin-left: 150px;
+}
+
+.editImage:activee {
+  height: 18px;
+  width: 18px;
 }

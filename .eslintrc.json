@@ -85,7 +85,9 @@
         "no-unused-vars": "off",
         "no-undef": "off",
         "max-len": "off",
-        "handle-callback-err": "off"
+        "handle-callback-err": "off",
+        "prefer-const": "off",
+        "curly": "off"
       }
     }
   ]
