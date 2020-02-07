@@ -5,13 +5,16 @@ const generateDiveWithElements = function(html) {
 };
 
 const formatTodoItems = function(tasks, patternDiv) {
+  const taskDiv = generateDiveWithElements('<div class="task"></div>');
+  patternDiv.appendChild(taskDiv);
   tasks.forEach(item => {
     let src = './images/star.png';
     if (item.status) src = './images/done.png';
-    let html = `<div class="content" id="${item.id}" ondblclick="this.contentEditable=true;" onkeypress="updateTask()">
-          <img src="${src}"  class='star' onclick='changeStatus()'/>${item.task}
-      <img src="./images/deleteTask.png"  class='deleteTask' onclick='deleteTask()'/></div>`;
-    patternDiv.appendChild(generateDiveWithElements(html));
+    let html = `<div class="content" id="${item.id}" " onkeypress="updateTask()">
+      <img src="${src}"  class='star' onclick='changeStatus()'/><div class="taskName"
+      ondblclick="this.contentEditable=true;">${item.task}</div>
+      <img src="./images/deleteTask.png" class='deleteTask' onclick='deleteTask()'/></div>`;
+    taskDiv.appendChild(generateDiveWithElements(html));
   });
   return patternDiv;
 };
@@ -19,7 +22,8 @@ const formatTodoItems = function(tasks, patternDiv) {
 const createHTMLElements = function(todoList) {
   const paperDiv = generateDiveWithElements('<div class="paper"></div>');
   const patternDiv = generateDiveWithElements('<div class="pattern"></div>');
-  let titleDiv = `<div class='content' ondblclick="this.contentEditable=true;" onkeypress="updateTitle()">${todoList.title}
+  let titleDiv = `<div class='content' ondblclick="this.contentEditable=true;" 
+  onkeypress="updateTitle()"><div class="todoName">${todoList.title}</div>
   <img src="./images/deleteTodo.png"  class='deleteTodo' onClick='deleteTodo()'/></div >`;
   titleDiv = generateDiveWithElements(titleDiv);
   patternDiv.appendChild(titleDiv);
