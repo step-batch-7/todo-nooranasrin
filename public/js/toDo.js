@@ -51,13 +51,15 @@ const addNewTaskToTheTodo = function() {
     const data = `todoId=${todoId}&newTask=${newTask}`;
     event.target.value = '';
     sendXHR(data, '/addNewTask', 'POST');
-    changeDisplayStyle('#todoDisplay', '#addNewTaskDiv');
+    document.querySelector('#addNewTaskDiv').style.display = 'none';
+    document.querySelector('#todoLists').style.opacity = '1';
   }
 };
 
 const showTaskAdderWindow = function() {
   const { todoId } = getIds(event);
-  changeDisplayStyle('#addNewTaskDiv', '#todoDisplay');
+  document.querySelector('#todoLists').style.opacity = '0.15';
+  document.querySelector('#addNewTaskDiv').style.display = 'block';
   const inputBox = document.querySelector('#newTaskInputBox');
   inputBox.focus();
   inputBox.dataset.todoId = todoId;

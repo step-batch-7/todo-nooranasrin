@@ -201,6 +201,13 @@ body {
   height: 15px;
 }
 
+#todoLists {
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+}
+
 .editImage {
   margin-left: 150px;
 }
@@ -233,6 +240,10 @@ body {
 #addNewTaskDiv {
   display: none;
   margin: auto;
+  align-items: center;
+  left: 50%;
+  margin-top: 28%;
+  z-index: 1;
 }
 
 #newTaskInputBox {

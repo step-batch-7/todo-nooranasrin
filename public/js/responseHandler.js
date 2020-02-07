@@ -43,13 +43,13 @@ const prepareTodoListToShow = function(todoList) {
   let { paperDiv, patternDiv } = createHTMLElements(todoList);
   patternDiv = formatTodoItems(todoList.tasks, patternDiv);
   paperDiv.appendChild(patternDiv);
-  const todoDiv = document.querySelector('#todoDisplay');
+  const todoDiv = document.querySelector('#todoLists');
   todoDiv.appendChild(paperDiv);
 };
 
 const formatTodoLists = function() {
   const todoLists = JSON.parse(this.responseText);
-  removeChild('#todoDisplay');
+  removeChild('#todoLists');
   todoLists.forEach(prepareTodoListToShow);
 };
 
