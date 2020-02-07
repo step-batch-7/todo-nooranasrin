@@ -23,3 +23,21 @@
 ✅--> Add functionality to mark an item as done and undone
 
 ✅--> Add functionality to delete todo
+
+✅--> Add functionality to add new task
+
+✅--> Add functionality to search by title of the todo
+
+--> Separate UI code into separate files
+
+--> Remove unwanted css codes
+
+--> Add simple functionalities like esc and close 
+
+--> Add test cases
+
+--> Add functionality to search by task
+
+--> Create a home pages
+
+--> Separate users

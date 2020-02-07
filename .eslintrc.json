@@ -79,7 +79,12 @@
   },
   "overrides": [
     {
-      "files": ["toDo.js", "responseHandler.js", "test*.js"],
+      "files": [
+        "toDo.js",
+        "responseHandler.js",
+        "test*.js",
+        "eventListeners.js"
+      ],
       "rules": {
         "no-magic-numbers": "off",
         "no-unused-vars": "off",
