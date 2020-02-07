@@ -35,6 +35,17 @@
       </div>
 
       <div id="todoDisplay">
+        <div id="searchTitle">
+          <input
+            type="text"
+            id="titleSearch"
+            placeholder="Search todo..."
+            autofocus
+            onkeyup="searchTodo()"
+          />
+          <img src="./images/search.png" id="titleSearchImg" />
+        </div>
+
         <div id="addNewTaskDiv">
           <div class="paper" style="height: 20px;">
             <div class="pattern">

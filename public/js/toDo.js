@@ -115,6 +115,24 @@ const updateTitle = function() {
   }
 };
 
+const displayMatchingTodo = function(event) {
+  const searchingWord = event.target.value;
+  const todoLists = [...document.querySelectorAll('.paper')].slice(1);
+  const matchingTodo = todoLists.filter(todoList => {
+    const title = todoList.querySelector('.todoName').innerText;
+    return !title.match(searchingWord);
+  });
+  matchingTodo.forEach(todo => todo.classList.add('hide'));
+};
+
+const searchTodo = function() {
+  if (event.keyCode === 8) {
+    const todoLists = [...document.querySelectorAll('.paper')].slice(1);
+    todoLists.forEach(todo => todo.classList.remove('hide'));
+  }
+  displayMatchingTodo(event);
+};
+
 const attachEventListener = function() {
   const task = document.querySelector('.todoTask');
   task.onkeypress = addNewTask;

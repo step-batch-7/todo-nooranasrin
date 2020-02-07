@@ -206,6 +206,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   position: absolute;
+  margin-top: 35px;
 }
 
 .editImage {
@@ -242,7 +243,7 @@ body {
   margin: auto;
   align-items: center;
   left: 50%;
-  margin-top: 28%;
+  margin-top: 20.5%;
   z-index: 1;
 }
 
@@ -252,4 +253,37 @@ body {
   width: 310px;
   height: 15px;
   border: none;
+}
+
+/* ----------------------------------------search title------------------ */
+#searchTitle {
+  width: 100%;
+  padding-left: 70%;
+  display: flex;
+}
+
+#titleSearch {
+  width: 250px;
+  border: none;
+  border-bottom: solid rgba(138, 132, 132, 0.9) 2px;
+  background-color: rgba(240, 232, 232, 0.1);
+  outline: none;
+  text-align: center;
+  line-height: 28px;
+  font-size: 15px;
+}
+
+#titleSearchImg {
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 20px;
+  width: 20px;
+}
+
+#titleSearchImg:active {
+  width: 22px;
+}
+
+.hide {
+  display: none;
 }
