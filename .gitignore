@@ -1,4 +1,5 @@
 node_modules
 .nyc_output
 data/todo.json
-
+public/.DS_Store
+.DS_Store
