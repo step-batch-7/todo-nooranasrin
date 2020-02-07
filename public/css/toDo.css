@@ -114,6 +114,7 @@ body {
 .deleteTodo {
   height: 18px;
   width: 18px;
+  margin-right: 3px;
 }
 
 .deleteTodo:active {
@@ -178,6 +179,7 @@ body {
   padding-top: 6px;
   padding-left: 56px;
   padding-right: 16px;
+  margin-bottom: -2px;
   line-height: 20px;
   font-size: 19px;
   letter-spacing: 1px;
@@ -189,6 +191,7 @@ body {
 
 .star {
   margin-right: 7px;
+  margin-top: 2.5px;
   height: 13px;
   width: 13px;
 }
@@ -216,4 +219,26 @@ body {
 
 .todoName {
   width: 85%;
+}
+
+.addTodo {
+  padding-left: 4px;
+  width: 15px;
+}
+
+.addTodo:active {
+  width: 14px;
+}
+
+#addNewTaskDiv {
+  display: none;
+  margin: auto;
+}
+
+#newTaskInputBox {
+  outline: none;
+  margin-bottom: 15px;
+  width: 310px;
+  height: 15px;
+  border: none;
 }

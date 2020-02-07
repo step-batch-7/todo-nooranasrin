@@ -44,6 +44,26 @@ const addNewTask = function() {
   }
 };
 
+const addNewTaskToTheTodo = function() {
+  const newTask = event.target.value;
+  if (event.key === 'Enter' && newTask !== '') {
+    const { todoId } = event.target.dataset;
+    const data = `todoId=${todoId}&newTask=${newTask}`;
+    event.target.value = '';
+    sendXHR(data, '/addNewTask', 'POST');
+    changeDisplayStyle('#todoDisplay', '#addNewTaskDiv');
+  }
+};
+
+const showTaskAdderWindow = function() {
+  const { todoId } = getIds(event);
+  changeDisplayStyle('#addNewTaskDiv', '#todoDisplay');
+  const inputBox = document.querySelector('#newTaskInputBox');
+  inputBox.focus();
+  inputBox.dataset.todoId = todoId;
+  inputBox.onkeypress = addNewTaskToTheTodo;
+};
+
 const deleteTaskBoxes = function(selector, id) {
   let taskBoxes = [...document.querySelectorAll(selector)];
   const [taskName] = taskBoxes.splice(0, 1);
