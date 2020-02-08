@@ -86,3 +86,17 @@ const searchTodo = function() {
   }
   displayMatchingTodo(event);
 };
+
+const searchTask = function() {
+  if (event.keyCode === 8) {
+    const todoLists = [...document.querySelectorAll('.paper')].slice(1);
+    todoLists.forEach(todo => todo.classList.remove('hide'));
+  }
+  displayMatchingTask(event);
+};
+
+const search = function() {
+  const status = event.target.checked;
+  if (status) return changeDisplayStyle('#taskSearch', '#titleSearch');
+  changeDisplayStyle('#titleSearch', '#taskSearch');
+};

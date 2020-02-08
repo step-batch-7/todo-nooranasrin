@@ -44,6 +44,21 @@ const displayMatchingTodo = function(event) {
   matchingTodo.forEach(todo => todo.classList.add('hide'));
 };
 
+const isTaskMatching = function(searchingWord, task) {
+  const taskName = task.innerText;
+  return !taskName.match(searchingWord);
+};
+
+const displayMatchingTask = function(event) {
+  const searchingWord = event.target.value;
+  const todoLists = [...document.querySelectorAll('.paper')].slice(1);
+  const matchingTodo = todoLists.filter(todoList => {
+    const tasks = [...todoList.querySelectorAll('.taskName')];
+    return tasks.every(isTaskMatching.bind(null, searchingWord));
+  });
+  matchingTodo.forEach(todo => todo.classList.add('hide'));
+};
+
 const attachEventListener = function() {
   const task = document.querySelector('.todoTask');
   task.onkeypress = addNewTask;

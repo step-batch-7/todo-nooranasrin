@@ -36,20 +36,33 @@
       </div>
 
       <div id="todoDisplay">
-        <div id="searchTitle">
-          <input
-            type="text"
-            id="titleSearch"
-            placeholder="Search todo..."
-            autofocus
-            onkeyup="searchTodo()"
-          />
-          <!--  -->
+        <div id="search">
+          <div id="searchInputDiv">
+            <div>
+              <input
+                type="text"
+                id="titleSearch"
+                placeholder="Search todo..."
+                autofocus
+                onkeyup="searchTodo()"
+                class="searchText"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                id="taskSearch"
+                placeholder="Search task..."
+                autofocus
+                onkeyup="searchTask()"
+                class="searchText"
+              />
+            </div>
+          </div>
           <label class="switch">
-            <input type="checkbox" />
-            <span class="slider round"></span>
+            <input type="checkbox" id="searchCheckBox" onclick="search()" />
+            <span class="slider"></span>
           </label>
-          <!-- <img src="./images/search.png" id="titleSearchImg" /> -->
         </div>
 
         <div id="addNewTaskDiv">
