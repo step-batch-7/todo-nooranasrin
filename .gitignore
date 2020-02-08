@@ -1,5 +1,5 @@
 node_modules
 .nyc_output
-data/todo.json
+data/todoLists.json
 public/.DS_Store
 .DS_Store

@@ -60,4 +60,52 @@ describe('POST method', () => {
       .expect(/{"title":"hello"/)
       .expect(200, done);
   });
+
+  it('should change the status of task when the url is /changeTaskStatus', done => {
+    request(handleRequest)
+      .post('/changeTaskStatus')
+      .send({ todoId: 181, taskId: 0 })
+      .expect(/{"id":0,"task":"buy milk","status":true}/)
+      .expect(200, done);
+  });
+
+  it('should delete the task when the url is /deleteTask', done => {
+    request(handleRequest)
+      .post('/deleteTask')
+      .send({ todoId: 181, taskId: 0 })
+      .expect(/{"id":2,"task":"clean the floor","status":false}/)
+      .expect(200, done);
+  });
+
+  it('should update the title when the url is /updateTitle', done => {
+    request(handleRequest)
+      .post('/updateTitle')
+      .send({ todoId: 181, title: 'home' })
+      .expect(/"title":"home"/)
+      .expect(200, done);
+  });
+
+  it('should update the  task when the url is /updateTask', done => {
+    request(handleRequest)
+      .post('/updateTask')
+      .send({ todoId: 181, task: 'home', taskId: 2 })
+      .expect(/{"id":2,"task":"home","status":false}/)
+      .expect(200, done);
+  });
+
+  it('should add the a task when the url is /addNewTask', done => {
+    request(handleRequest)
+      .post('/addNewTask')
+      .send({ todoId: 181, newTask: 'hai' })
+      .expect(/{"id":3,"task":"hai","status":false}/)
+      .expect(200, done);
+  });
+
+  it('should delete a todo when the url is /deleteTodo', done => {
+    request(handleRequest)
+      .post('/deleteTodo')
+      .send({ todoId: 181 })
+      .expect(/{"title":"School"/)
+      .expect(200, done);
+  });
 });
