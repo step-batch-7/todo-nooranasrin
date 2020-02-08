@@ -83,7 +83,8 @@
         "toDo.js",
         "responseHandler.js",
         "test*.js",
-        "eventListeners.js"
+        "eventListeners.js",
+        "config.js"
       ],
       "rules": {
         "no-magic-numbers": "off",
@@ -92,7 +93,8 @@
         "max-len": "off",
         "handle-callback-err": "off",
         "prefer-const": "off",
-        "curly": "off"
+        "curly": "off",
+        "no-process-env": "off"
       }
     }
   ]
