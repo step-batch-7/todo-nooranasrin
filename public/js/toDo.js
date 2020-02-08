@@ -65,6 +65,6 @@ const attachEventListener = function() {
 };
 
 const main = function() {
-  sendXHR('', '/todoList', 'GET');
+  getJSON('/todoList', formatTodoLists);
   attachEventListener();
 };

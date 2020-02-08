@@ -16,21 +16,18 @@ const addNewTask = function() {
 
 const saveTodo = function() {
   const { title, lists } = formatTodoToSave('todoTitle', '.todoTask');
-  const newTodo = `title=${title}&tasks=${JSON.stringify(lists)}`;
-  sendXHR(newTodo, '/saveTodo', 'POST', formatTodoLists);
+  postJSON('/saveTodo', { title, tasks: lists }, formatTodoLists);
   changeDisplayStyle('#newTodoAddButtonDiv', '#newTodoAdder');
 };
 
 const deleteTodo = function() {
   const { todoId } = getIds(event);
-  const data = `todoId=${todoId}`;
-  sendXHR(data, '/deleteTodo', 'POST');
+  postJSON('/deleteTodo', { todoId }, formatTodoLists);
 };
 
 const deleteTask = function() {
   const { todoId, taskId } = getIds(event);
-  const data = `todoId=${todoId}&taskId=${taskId}`;
-  sendXHR(data, '/deleteTask', 'POST');
+  postJSON('/deleteTask', { todoId, taskId }, formatTodoLists);
 };
 
 const showTaskAdderWindow = function() {
@@ -47,9 +44,8 @@ const addNewTaskToTheTodo = function() {
   const newTask = event.target.value;
   if (event.key === 'Enter' && newTask !== '') {
     const { todoId } = event.target.dataset;
-    const data = `todoId=${todoId}&newTask=${newTask}`;
     event.target.value = '';
-    sendXHR(data, '/addNewTask', 'POST');
+    postJSON('/addNewTask', { todoId, newTask }, formatTodoLists);
     document.querySelector('#addNewTaskDiv').style.display = 'none';
     document.querySelector('#todoLists').style.opacity = '1';
   }
@@ -57,25 +53,22 @@ const addNewTaskToTheTodo = function() {
 
 const changeStatus = function() {
   const { todoId, taskId } = getIds(event);
-  const textTodSend = `todoId=${todoId}&taskId=${taskId}`;
-  sendXHR(textTodSend, '/changeTaskStatus', 'POST', formatTodoLists);
+  postJSON('/changeTaskStatus', { todoId, taskId }, formatTodoLists);
 };
 
 const updateTask = function() {
   if (event.key === 'Enter') {
     const { todoId, taskId } = getIds(event);
-    const updatedTask = event.target.innerText;
-    const data = `todoId=${todoId}&taskId=${taskId}&task=${updatedTask}`;
-    sendXHR(data, '/updateTask', 'POST');
+    const task = event.target.innerText;
+    postJSON('/updateTask', { todoId, taskId, task }, formatTodoLists);
   }
 };
 
 const updateTitle = function() {
   if (event.key === 'Enter') {
     const { todoId } = getIds(event);
-    const newTitle = event.target.innerText;
-    const data = `todoId=${todoId}&title=${newTitle}`;
-    sendXHR(data, '/updateTitle', 'POST');
+    const title = event.target.innerText;
+    postJSON('/updateTitle', { todoId, title }, formatTodoLists);
   }
 };
 

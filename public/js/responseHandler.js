@@ -47,15 +47,32 @@ const prepareTodoListToShow = function(todoList) {
   todoDiv.appendChild(paperDiv);
 };
 
-const formatTodoLists = function() {
-  const todoLists = JSON.parse(this.responseText);
+const formatTodoLists = function(todoLists) {
   removeChild('#todoLists');
   todoLists.forEach(prepareTodoListToShow);
 };
 
-const sendXHR = function(data, url, method) {
-  const request = new XMLHttpRequest();
-  request.open(method, url);
-  request.send(data);
-  request.onload = formatTodoLists;
+const requestXHR = (method, url, data, callback) => {
+  const req = new XMLHttpRequest();
+  req.open(method, url);
+  data && req.setRequestHeader('Content-Type', 'application/json');
+  const content = data ? JSON.stringify(data, null, 2) : null;
+  req.send(content);
+
+  req.onload = function() {
+    if (this.status !== 200) return;
+    let result = this.responseText;
+    if ('application/json' === this.getResponseHeader('Content-Type')) {
+      result = JSON.parse(this.responseText);
+    }
+    callback(result);
+  };
+};
+
+const getJSON = (url, callback) => {
+  requestXHR('GET', url, null, callback);
+};
+
+const postJSON = (url, data, callback) => {
+  requestXHR('POST', url, data, callback);
 };

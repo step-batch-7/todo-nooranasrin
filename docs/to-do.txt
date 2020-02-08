@@ -34,7 +34,7 @@
 
 --> Add test cases
 
---> Add functionality to search by task
+✅--> Add functionality to search by task
 
 --> Create a home pages
 
