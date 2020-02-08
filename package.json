@@ -9,7 +9,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "nyc mocha",
+    "test": "export STORAGE_FILE=$(pwd)/test/resources/todoLists.json;nyc mocha",
     "start": "node server.js"
   },
   "repository": {
