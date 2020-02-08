@@ -28,9 +28,7 @@
 
 ✅--> Add functionality to search by title of the todo
 
---> Separate UI code into separate files
-
---> Remove unwanted css codes
+✅--> Separate UI code into separate files
 
 --> Add simple functionalities like esc and close 
 
