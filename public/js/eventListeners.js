@@ -93,3 +93,9 @@ const search = function() {
   if (status) return changeDisplayStyle('#taskSearch', '#titleSearch');
   changeDisplayStyle('#titleSearch', '#taskSearch');
 };
+
+const cancelAddTask = function() {
+  if (!event.keyCode === 27) return;
+  document.querySelector('#addNewTaskDiv').style.display = 'none';
+  document.querySelector('#todoLists').style.opacity = '1';
+};

@@ -32,7 +32,7 @@
 
 --> Add simple functionalities like esc and close 
 
---> Add test cases
+✅--> Add test cases
 
 ✅--> Add functionality to search by task
 
