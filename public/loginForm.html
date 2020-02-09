@@ -8,15 +8,24 @@
     <link rel="stylesheet" href="./css/login.css" />
   </head>
   <body>
-    <div class="loginPage">
+    <div class="loginAndRegistrationPage">
       <div class="form">
-        <form class="login-form">
+        <form class="loginForm">
           <input type="text" placeholder="username" autofocus />
           <input type="password" placeholder="password" />
           <button>LOGIN</button>
           <p class="message">
             Not registered? <a href="#">Create an account</a>
           </p>
+        </form>
+
+        <form class="registerForm">
+          <input type="text" placeholder="name" autofocus />
+          <input type="password" placeholder="password" />
+          <input type="text" placeholder="email address" />
+          <input type="number" placeholder="phone number" />
+          <button>REGISTER</button>
+          <p class="message">Already registered? <a href="#">Sign In</a></p>
         </form>
       </div>
     </div>

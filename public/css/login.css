@@ -1,4 +1,4 @@
-.loginPage {
+.loginAndRegistrationPage {
   width: 360px;
   padding: 10% 0 0;
   margin: auto;
@@ -53,4 +53,8 @@
 .form .message a {
   color: #187dbc;
   text-decoration: none;
+}
+
+.registerForm {
+  display: none;
 }
