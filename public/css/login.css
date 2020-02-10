@@ -16,6 +16,11 @@
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
 
+.links {
+  color: #4596c9;
+  cursor: pointer;
+}
+
 .form input {
   outline: 0;
   background: #f2f2f2;
@@ -55,6 +60,6 @@
   text-decoration: none;
 }
 
-.registerForm {
+#registrationForm {
   display: none;
 }

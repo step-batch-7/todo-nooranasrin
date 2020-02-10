@@ -36,6 +36,8 @@
 
 ✅--> Add functionality to search by task
 
+✅--> Desing login page and signup page
+
 --> Create a home pages
 
 --> Separate users

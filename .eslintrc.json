@@ -84,7 +84,8 @@
         "responseHandler.js",
         "test*.js",
         "eventListeners.js",
-        "config.js"
+        "config.js",
+        "loginAndRegistration.js"
       ],
       "rules": {
         "no-magic-numbers": "off",
