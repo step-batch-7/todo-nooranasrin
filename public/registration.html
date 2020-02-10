@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RegistrationPage</title>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="./css/login.css" />
+    <script src="js/loginAndRegistration.js"></script>
+  </head>
+  <body>
+    <div class="loginAndRegistrationPage">
+      <div class="form">
+        <form
+          name="registrationForm"
+          method="POST"
+          action="/registerUser"
+          onsubmit="return validateRegistrationForm()"
+        >
+          <p id="errorInName" class="errorMsg">&nbsp;</p>
+          <input type="text" placeholder="name" name="userName" autofocus />
+          <p id="errorInPassword" class="errorMsg">&nbsp;</p>
+          <input type="password" placeholder="password" name="password" />
+          <p id="errorInEmail" class="errorMsg">&nbsp;</p>
+          <input type="text" placeholder="email address" name="email" />
+          <p id="errorInPhoneNumber" class="errorMsg">&nbsp;</p>
+          <input type="text" placeholder="phone number" name="phoneNumber" />
+          <input type="submit" name="register" id="register" value="REGISTER" />
+          <p class="message">
+            Already registered?
+            <a href="./index.html">Sign In</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

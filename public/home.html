@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Tasks</title>
+    <link rel="shortcut icon" href="#" />
+    <link rel="stylesheet" href="./css/toDo.css" />
+    <script src="./js/responseHandler.js"></script>
+    <script src="./js/eventListeners.js"></script>
+    <script src="./js/toDo.js"></script>
+  </head>
+  <body onload="main()">
+    <div id="wholePage">
+      <div id="sideBarDiv">
+        <div id="newTodoAddButtonDiv">
+          <span class="newTodoAddButton" onclick="showTodoAdderWindow()"
+            >Add Your Todo Here</span
+          >
+        </div>
+
+        <div id="newTodoAdder">
+          <div id="titleAndSave">
+            <input type="text" id="todoTitle" placeholder="Add title here..." />
+            <img
+              src="./images/save.png"
+              width="30px"
+              height="35px"
+              id="saveImg"
+              onclick="saveTodo()"
+            />
+          </div>
+          <input type="text" class="todoTask" placeholder="Add task here..." />
+        </div>
+      </div>
+
+      <div id="todoDisplay">
+        <div id="search">
+          <div id="searchInputDiv">
+            <div>
+              <input
+                type="text"
+                id="titleSearch"
+                placeholder="Search todo..."
+                autofocus
+                onkeyup="searchTodo()"
+                class="searchText"
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                id="taskSearch"
+                placeholder="Search task..."
+                autofocus
+                onkeyup="searchTask()"
+                class="searchText"
+              />
+            </div>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="searchCheckBox" onclick="search()" />
+            <span class="slider"></span>
+          </label>
+        </div>
+
+        <div id="addNewTaskDiv">
+          <div class="paper" style="height: 20px;">
+            <div class="pattern">
+              <div class="content">
+                <input type="text" id="newTaskInputBox" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="todoLists"></div>
+      </div>
+    </div>
+  </body>
+</html>
