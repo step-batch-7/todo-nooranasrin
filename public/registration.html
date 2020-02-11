@@ -6,6 +6,7 @@
     <title>RegistrationPage</title>
     <link rel="shortcut icon" href="#" />
     <link rel="stylesheet" href="./css/login.css" />
+    <script src="js/responseHandler.js"></script>
     <script src="js/loginAndRegistration.js"></script>
   </head>
   <body>
@@ -18,7 +19,14 @@
           onsubmit="return validateRegistrationForm()"
         >
           <p id="errorInName" class="errorMsg">&nbsp;</p>
-          <input type="text" placeholder="name" name="userName" autofocus />
+          <input
+            type="text"
+            placeholder="name"
+            name="userName"
+            autofocus
+            onkeyup="validateUserName()"
+            autocomplete="off"
+          />
           <p id="errorInPassword" class="errorMsg">&nbsp;</p>
           <input type="password" placeholder="password" name="password" />
           <p id="errorInEmail" class="errorMsg">&nbsp;</p>

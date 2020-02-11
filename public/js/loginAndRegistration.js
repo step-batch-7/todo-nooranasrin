@@ -36,3 +36,8 @@ const validateRegistrationForm = function() {
   }
   return true;
 };
+
+const validateUserName = function() {
+  const userName = event.target.value;
+  postJSON('/checkUserNameExists', userName, checkUserNameIsAvailable);
+};
