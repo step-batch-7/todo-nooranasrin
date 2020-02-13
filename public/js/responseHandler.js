@@ -72,7 +72,8 @@ const requestXHR = (method, url, data, callback) => {
   req.onload = function() {
     if (this.status !== 200) return;
     let result = this.responseText;
-    if ('application/json' === this.getResponseHeader('Content-Type')) {
+    const contentType = this.getResponseHeader('Content-Type');
+    if ('application/json; charset=utf-8' === contentType) {
       result = JSON.parse(this.responseText);
     }
     callback(result);

@@ -31,7 +31,7 @@ describe('GET method', () => {
   it('should give the total todo lists when the url is /todoList', done => {
     request(app)
       .get('/todoList')
-      .expect('Content-Type', 'application/json')
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
 });
@@ -46,7 +46,7 @@ describe('POST method', () => {
     request(app)
       .post('/saveTodo')
       .send({ title: 'hello', tasks: ['hai'] })
-      .expect(/{"title":"hello"/)
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
 
@@ -54,7 +54,7 @@ describe('POST method', () => {
     request(app)
       .post('/changeTaskStatus')
       .send({ todoId: 181, taskId: 0 })
-      .expect(/{"id":0,"task":"buy milk","status":true}/)
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
 
@@ -62,7 +62,7 @@ describe('POST method', () => {
     request(app)
       .post('/deleteTask')
       .send({ todoId: 181, taskId: 0 })
-      .expect(/{"id":2,"task":"clean the floor","status":false}/)
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
 
@@ -70,7 +70,7 @@ describe('POST method', () => {
     request(app)
       .post('/updateTitle')
       .send({ todoId: 181, title: 'home' })
-      .expect(/"title":"home"/)
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
 
@@ -78,7 +78,7 @@ describe('POST method', () => {
     request(app)
       .post('/updateTask')
       .send({ todoId: 181, task: 'home', taskId: 2 })
-      .expect(/{"id":2,"task":"home","status":false}/)
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
 
@@ -86,7 +86,7 @@ describe('POST method', () => {
     request(app)
       .post('/addNewTask')
       .send({ todoId: 181, newTask: 'hai' })
-      .expect(/{"id":3,"task":"hai","status":false}/)
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
 
@@ -94,7 +94,7 @@ describe('POST method', () => {
     request(app)
       .post('/deleteTodo')
       .send({ todoId: 181 })
-      .expect(/{"title":"School"/)
+      .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
 });
