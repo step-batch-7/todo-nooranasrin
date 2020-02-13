@@ -7,16 +7,23 @@
     <link rel="shortcut icon" href="#" />
     <link rel="stylesheet" href="./css/login.css" />
     <script src="js/loginAndRegistration.js"></script>
+    <script src="js/responseHandler.js"></script>
   </head>
   <body>
     <div class="loginAndRegistrationPage">
       <div class="form">
-        <form id="loginForm">
+        <form name="loginForm">
           <p id="errorInUserName" class="errorMsg">&nbsp;</p>
-          <input type="text" placeholder="username" autofocus />
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            autofocus
+            autocomplete="off"
+          />
           <p id="errorInPassword" class="errorMsg">&nbsp;</p>
-          <input type="password" placeholder="password" />
-          <input type="submit" name="login" id="login" value="LOGIN" />
+          <input type="password" name="password" placeholder="password" />
+          <input type="button" name="login" id="login" value="LOGIN" />
           <p class="message">
             Not registered?
             <a href="./registration.html">Create an account</a>
