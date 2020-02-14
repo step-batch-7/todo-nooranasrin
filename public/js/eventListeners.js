@@ -22,12 +22,12 @@ const saveTodo = function() {
 
 const deleteTodo = function() {
   const { todoId } = getIds(event);
-  postJSON('/deleteTodo', { todoId }, formatTodoLists);
+  deleteJSON('/deleteTodo', { todoId }, formatTodoLists);
 };
 
 const deleteTask = function() {
   const { todoId, taskId } = getIds(event);
-  postJSON('/deleteTask', { todoId, taskId }, formatTodoLists);
+  deleteJSON('/deleteTask', { todoId, taskId }, formatTodoLists);
 };
 
 const showTaskAdderWindow = function() {

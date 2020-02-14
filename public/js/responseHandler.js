@@ -87,3 +87,7 @@ const getJSON = (url, callback) => {
 const postJSON = (url, data, callback) => {
   requestXHR('POST', url, data, callback);
 };
+
+const deleteJSON = (url, data, callback) => {
+  requestXHR('DELETE', url, data, callback);
+};
