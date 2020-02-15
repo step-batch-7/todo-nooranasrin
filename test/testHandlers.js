@@ -50,9 +50,24 @@ describe('POST method', () => {
       .expect(200, done);
   });
 
+  it('should add the a task when the url is /addNewTask', done => {
+    request(app)
+      .post('/addNewTask')
+      .send({ todoId: 181, newTask: 'hai' })
+      .expect('Content-Type', /application\/json/)
+      .expect(200, done);
+  });
+});
+
+describe('PATCH', () => {
+  beforeEach(() => {
+    sinon.replace(fs, 'writeFileSync', () => {});
+  });
+  afterEach(() => sinon.restore());
+
   it('should change the status of task when the url is /changeTaskStatus', done => {
     request(app)
-      .post('/changeTaskStatus')
+      .patch('/changeTaskStatus')
       .send({ todoId: 181, taskId: 0 })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
@@ -60,7 +75,7 @@ describe('POST method', () => {
 
   it('should update the title when the url is /updateTitle', done => {
     request(app)
-      .post('/updateTitle')
+      .patch('/updateTitle')
       .send({ todoId: 181, title: 'home' })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
@@ -68,16 +83,8 @@ describe('POST method', () => {
 
   it('should update the  task when the url is /updateTask', done => {
     request(app)
-      .post('/updateTask')
+      .patch('/updateTask')
       .send({ todoId: 181, task: 'home', taskId: 0 })
-      .expect('Content-Type', /application\/json/)
-      .expect(200, done);
-  });
-
-  it('should add the a task when the url is /addNewTask', done => {
-    request(app)
-      .post('/addNewTask')
-      .send({ todoId: 181, newTask: 'hai' })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });

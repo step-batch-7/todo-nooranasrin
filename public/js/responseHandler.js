@@ -91,3 +91,7 @@ const postJSON = (url, data, callback) => {
 const deleteJSON = (url, data, callback) => {
   requestXHR('DELETE', url, data, callback);
 };
+
+const patchJSON = (url, data, callback) => {
+  requestXHR('PATCH', url, data, callback);
+};

@@ -53,14 +53,14 @@ const addNewTaskToTheTodo = function() {
 
 const changeStatus = function() {
   const { todoId, taskId } = getIds(event);
-  postJSON('/changeTaskStatus', { todoId, taskId }, formatTodoLists);
+  patchJSON('/changeTaskStatus', { todoId, taskId }, formatTodoLists);
 };
 
 const updateTask = function() {
   if (event.key === 'Enter') {
     const { todoId, taskId } = getIds(event);
     const task = event.target.innerText;
-    postJSON('/updateTask', { todoId, taskId, task }, formatTodoLists);
+    patchJSON('/updateTask', { todoId, taskId, task }, formatTodoLists);
   }
 };
 
@@ -68,7 +68,7 @@ const updateTitle = function() {
   if (event.key === 'Enter') {
     const { todoId } = getIds(event);
     const title = event.target.innerText;
-    postJSON('/updateTitle', { todoId, title }, formatTodoLists);
+    patchJSON('/updateTitle', { todoId, title }, formatTodoLists);
   }
 };
 
