@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "title": "Home",
+    "tasks": [{ "id": 0, "task": "clean the floor", "status": false }],
+    "id": 181
+  },
+  {
+    "title": "School",
+    "tasks": [{ "id": 0, "task": "go to home", "status": false }],
+    "id": 816
+  }
+]

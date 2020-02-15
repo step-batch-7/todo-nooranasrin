@@ -58,14 +58,6 @@ describe('POST method', () => {
       .expect(200, done);
   });
 
-  it('should delete the task when the url is /deleteTask', done => {
-    request(app)
-      .post('/deleteTask')
-      .send({ todoId: 181, taskId: 0 })
-      .expect('Content-Type', /application\/json/)
-      .expect(200, done);
-  });
-
   it('should update the title when the url is /updateTitle', done => {
     request(app)
       .post('/updateTitle')
@@ -77,7 +69,7 @@ describe('POST method', () => {
   it('should update the  task when the url is /updateTask', done => {
     request(app)
       .post('/updateTask')
-      .send({ todoId: 181, task: 'home', taskId: 2 })
+      .send({ todoId: 181, task: 'home', taskId: 0 })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
@@ -89,10 +81,25 @@ describe('POST method', () => {
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
+});
+
+describe('DELETE', () => {
+  beforeEach(() => {
+    sinon.replace(fs, 'writeFileSync', () => {});
+  });
+  afterEach(() => sinon.restore());
+
+  it('should delete the task when the url is /deleteTask', done => {
+    request(app)
+      .delete('/deleteTask')
+      .send({ todoId: 181, taskId: 0 })
+      .expect('Content-Type', /application\/json/)
+      .expect(200, done);
+  });
 
   it('should delete a todo when the url is /deleteTodo', done => {
     request(app)
-      .post('/deleteTodo')
+      .delete('/deleteTodo')
       .send({ todoId: 181 })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
