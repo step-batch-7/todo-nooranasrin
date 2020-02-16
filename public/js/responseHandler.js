@@ -1,13 +1,3 @@
-const checkUserNameIsAvailable = function({ isExists }) {
-  const msgBox = document.querySelector('#errorInName');
-  if (isExists) {
-    msgBox.innerText = 'user already exists';
-    return (document.forms['registrationForm'].onsubmit = () => false);
-  }
-  msgBox.innerText = '';
-  document.forms['registrationForm'].onsubmit = validateRegistrationForm;
-};
-
 const generateDiveWithElements = function(html) {
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = html;

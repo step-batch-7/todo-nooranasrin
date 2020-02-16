@@ -12,36 +12,40 @@
   <body>
     <div class="loginAndRegistrationPage">
       <div class="form">
-        <form
-          name="registrationForm"
-          method="POST"
-          action="/registerUser"
-          onsubmit="return validateRegistrationForm()"
-        >
+        <form name="registrationForm" method="POST" action="/registerUser">
           <p id="errorInName" class="errorMsg">&nbsp;</p>
           <input
             type="text"
             placeholder="name"
             name="userName"
             autofocus
-            onkeyup="validateUserName()"
+            onblur="validateUserName()"
+            required
             autocomplete="off"
           />
           <p id="errorInPassword" class="errorMsg">&nbsp;</p>
-          <input type="password" placeholder="password" name="password" />
+          <input
+            type="password"
+            placeholder="password"
+            name="password"
+            required
+          />
           <p id="errorInEmail" class="errorMsg">&nbsp;</p>
           <input
-            type="text"
+            type="email"
             placeholder="email address"
             name="email"
             autocomplete="off"
+            required
           />
           <p id="errorInPhoneNumber" class="errorMsg">&nbsp;</p>
           <input
-            type="text"
+            type="tel"
             placeholder="phone number"
             name="phoneNumber"
             autocomplete="off"
+            pattern="[0-9]{10}"
+            required
           />
           <input type="submit" name="register" id="register" value="REGISTER" />
           <p class="message">
