@@ -1,6 +1,7 @@
 const request = require('supertest');
 const sinon = require('sinon');
 const fs = require('fs');
+const TodoLog = require('../lib/todoLog');
 const app = require('../lib/routers');
 
 describe('GET method', () => {
@@ -29,6 +30,14 @@ describe('GET method', () => {
   });
 
   it('should give the total todo lists when the url is /todoList', done => {
+    const todoLists = [
+      {
+        title: 'School',
+        id: 1,
+        tasks: [{ id: 1, task: 'maths', status: false }]
+      }
+    ];
+    app.locals = { todoLists: TodoLog.load(todoLists) };
     request(app)
       .get('/todoList')
       .expect('Content-Type', /application\/json/)
@@ -38,7 +47,15 @@ describe('GET method', () => {
 
 describe('POST method', () => {
   beforeEach(() => {
-    sinon.replace(fs, 'writeFileSync', () => {});
+    const todoLists = [
+      {
+        title: 'School',
+        id: 1,
+        tasks: [{ id: 1, task: 'maths', status: false }]
+      }
+    ];
+    app.locals = { todoLists: TodoLog.load(todoLists) };
+    app.locals.writer = sinon.fake();
   });
   afterEach(() => sinon.restore());
 
@@ -53,7 +70,7 @@ describe('POST method', () => {
   it('should add the a task when the url is /addNewTask', done => {
     request(app)
       .post('/addNewTask')
-      .send({ todoId: 181, newTask: 'hai' })
+      .send({ todoId: 1, newTask: 'hai' })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
@@ -61,14 +78,22 @@ describe('POST method', () => {
 
 describe('PATCH', () => {
   beforeEach(() => {
-    sinon.replace(fs, 'writeFileSync', () => {});
+    const todoLists = [
+      {
+        title: 'School',
+        id: 1,
+        tasks: [{ id: 1, task: 'maths', status: false }]
+      }
+    ];
+    app.locals = { todoLists: TodoLog.load(todoLists) };
+    app.locals.writer = sinon.fake();
   });
   afterEach(() => sinon.restore());
 
   it('should change the status of task when the url is /changeTaskStatus', done => {
     request(app)
       .patch('/changeTaskStatus')
-      .send({ todoId: 181, taskId: 0 })
+      .send({ todoId: 1, taskId: 1 })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
@@ -76,7 +101,7 @@ describe('PATCH', () => {
   it('should update the title when the url is /updateTitle', done => {
     request(app)
       .patch('/updateTitle')
-      .send({ todoId: 181, title: 'home' })
+      .send({ todoId: 1, title: 'home' })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
@@ -84,7 +109,7 @@ describe('PATCH', () => {
   it('should update the  task when the url is /updateTask', done => {
     request(app)
       .patch('/updateTask')
-      .send({ todoId: 181, task: 'home', taskId: 0 })
+      .send({ todoId: 1, task: 'home', taskId: 1 })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
@@ -92,14 +117,25 @@ describe('PATCH', () => {
 
 describe('DELETE', () => {
   beforeEach(() => {
-    sinon.replace(fs, 'writeFileSync', () => {});
+    const todoLists = [
+      {
+        title: 'School',
+        id: 1,
+        tasks: [
+          { id: 1, task: 'maths', status: false },
+          { id: 2, task: 'maths', status: false }
+        ]
+      }
+    ];
+    app.locals = { todoLists: TodoLog.load(todoLists) };
+    app.locals.writer = sinon.fake();
   });
   afterEach(() => sinon.restore());
 
   it('should delete the task when the url is /deleteTask', done => {
     request(app)
       .delete('/deleteTask')
-      .send({ todoId: 181, taskId: 0 })
+      .send({ todoId: 1, taskId: 1 })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });
@@ -107,7 +143,7 @@ describe('DELETE', () => {
   it('should delete a todo when the url is /deleteTodo', done => {
     request(app)
       .delete('/deleteTodo')
-      .send({ todoId: 181 })
+      .send({ todoId: 1 })
       .expect('Content-Type', /application\/json/)
       .expect(200, done);
   });

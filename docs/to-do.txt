@@ -30,14 +30,16 @@
 
 ✅--> Separate UI code into separate files
 
---> Add simple functionalities like esc and close 
-
 ✅--> Add test cases
 
 ✅--> Add functionality to search by task
 
 ✅--> Desing login page and signup page
 
---> Create a home pages
+✅-->Register users
+
+-->use locals
+
+-->signIn
 
 --> Separate users

@@ -6,10 +6,25 @@ const createDirectoryIfNotExists = function() {
   }
 };
 
-const getStoragePath = function() {
-  return process.env.STORAGE_FILE || `${__dirname}/../data/todoLists.json`;
+const createUserCredentialsFile = function() {
+  if (!fs.existsSync(`${__dirname}/../data/userCredentials.json`)) {
+    fs.writeFileSync(
+      `${__dirname}/../data/userCredentials.json`,
+      JSON.stringify({})
+    );
+  }
 };
 
-createDirectoryIfNotExists();
-const storagePath = getStoragePath();
-module.exports = storagePath;
+const createTodoStoreFile = function() {
+  if (!fs.existsSync(`${__dirname}/../data/todoLists.json`)) {
+    fs.writeFileSync(`${__dirname}/../data/todoLists.json`, JSON.stringify([]));
+  }
+};
+
+const createSetup = function() {
+  createDirectoryIfNotExists();
+  createUserCredentialsFile();
+  createTodoStoreFile();
+};
+
+module.exports = createSetup;
