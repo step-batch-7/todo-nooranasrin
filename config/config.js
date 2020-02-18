@@ -17,7 +17,7 @@ const createUserCredentialsFile = function() {
 
 const createTodoStoreFile = function() {
   if (!fs.existsSync(`${__dirname}/../data/todoLists.json`)) {
-    fs.writeFileSync(`${__dirname}/../data/todoLists.json`, JSON.stringify([]));
+    fs.writeFileSync(`${__dirname}/../data/todoLists.json`, JSON.stringify({}));
   }
 };
 
